@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer persistent v-model="showSidebar" enable-resize-watcher>
+  <v-navigation-drawer persistent v-model="isActive" enable-resize-watcher app>
     <div class="text-xs-center pa-3">
       <div class="display-2 py-2">Ucan</div>
       <p>Cuidado y adiestramiento de mascotas</p>
@@ -10,7 +10,6 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex';
   import AppMenu from './AppMenu.vue';
 
   export default {
@@ -19,7 +18,14 @@
       AppMenu
     },
     computed: {
-      ...mapState(['showSidebar'])
+      isActive: {
+        get () {
+          return this.$store.state.sidebar;
+        },
+        set (value) {
+          this.$store.commit('sidebar', value);
+        }
+      }
     }
   };
 </script>

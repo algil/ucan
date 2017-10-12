@@ -1,20 +1,21 @@
 <template>
-  <v-app id="app" toolbar footer>
+  <v-app id="app">
     <app-sidebar></app-sidebar>
     <app-header></app-header>
     <main>
-      <v-container fluid>
-        <v-layout align-center justify-center>
-          <v-flex xs10>
-            <v-card>
-              <v-card-text>
-                <router-view></router-view>
-              </v-card-text>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-
+      <v-content>
+        <v-container fluid>
+          <v-layout align-center justify-center>
+            <v-flex xs12 lg8>
+              <v-card>
+                <v-card-text>
+                  <router-view></router-view>
+                </v-card-text>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-content>
     </main>
     <v-footer></v-footer>
   </v-app>
@@ -30,8 +31,9 @@
       AppSidebar,
       AppHeader
     },
-    data: () => ({
-    })
+    data() {
+      return {};
+    }
   };
 </script>
 

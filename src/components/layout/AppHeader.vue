@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar class="primary" dark>
+  <v-toolbar class="primary" dark app>
     <v-toolbar-side-icon @click.stop="toggleSidebar"></v-toolbar-side-icon>
     <v-toolbar-title>Inicio</v-toolbar-title>
   </v-toolbar>
@@ -7,12 +7,12 @@
 
 
 <script>
-  import {mapMutations} from 'vuex';
-
   export default {
     name: 'app-header',
     methods: {
-      ...mapMutations(['toggleSidebar'])
+      toggleSidebar () {
+        this.$store.commit('sidebar', !this.$store.state.sidebar);
+      }
     }
   };
 </script>

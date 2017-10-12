@@ -1,3 +1,3 @@
 export default {
-  showSidebar: true
+  sidebar: true
 };

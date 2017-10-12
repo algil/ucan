@@ -1,17 +1,18 @@
 <template>
   <div>
-    Administration
+    <h2>Administración</h2>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'administration',
-    data () {
+    name: 'admin-container',
+    data() {
       return {
-      };
+      }
     }
-  };
+  }
 </script>
 
 <style>

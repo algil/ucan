@@ -1,22 +1,45 @@
 <template>
   <v-list dense>
-    <v-list-tile v-for="item in items" :key="item.text">
-      <v-list-tile-action>
-        <v-icon>{{ item.icon }}</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-content>
-        <v-list-tile-title>{{ item.text }}</v-list-tile-title>
-      </v-list-tile-content>
-    </v-list-tile>
+    <template v-for="item in items">
+      <v-list-group v-if="item.items" key="menu-items" :group="item.group">
+        <!-- Group header -->
+        <v-list-tile slot="item">
+          <v-list-tile-action>
+            <v-icon>{{item.action}}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{item.title}}</v-list-tile-title>
+          </v-list-tile-content>
+          <v-list-tile-action>
+            <v-icon>keyboard_arrow_down</v-icon>
+          </v-list-tile-action>
+        </v-list-tile>
 
-    <v-divider></v-divider>
+        <!-- Sub items -->
+        <v-list-tile v-for="subItem in item.items" :key="subItem.title" :to="subItem.href" ripple :disable="subItem.disable" exact>
+          <v-list-tile-content>
+            <v-list-tile-title>{{subItem.title}}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list-group>
 
-    <v-list-tile key="12">
-      <v-list-tile-action>
-        <v-icon class="grey--text text--darken-1">settings</v-icon>
-      </v-list-tile-action>
-      <v-list-tile-title class="grey--text text--darken-1">Configuración</v-list-tile-title>
-    </v-list-tile>
+      <v-subheader v-else-if="item.header" key="menu-items" class="mt-3 grey--text text--darken-1">
+        <v-icon color="grey darken-1" class="mr-2" v-if="item.action">{{item.action}}</v-icon>
+        <span>{{item.header}}</span>
+      </v-subheader>
+
+      <v-divider v-else-if="item.divider" key="menu-items"></v-divider>
+
+      <!-- Item without group -->
+      <v-list-tile v-else :disabled="item.disabled" :to="item.href" exact>
+        <v-list-tile-action>
+          <v-icon>{{item.action}}</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>{{item.title}}</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </template>
   </v-list>
 </template>
 
@@ -25,8 +48,20 @@
     name: 'app-menu',
     data: () => ({
       items: [
-        {text: 'Inicio', icon: 'home'},
-        {text: 'Nuevo Cliente', icon: 'person_add'}
+        {title: 'Inicio', action: 'home', href: '/'},
+        {title: 'Nuevo Cliente', action: 'person_add', href: '/client/new'},
+        {title: 'Nueva Mascota', action: 'person_add', href: '/pet/new'},
+        {divider: true},
+        {
+          title: 'Administración',
+          action: 'settings',
+          group: 'admin',
+          items: [
+            {title: 'Centros', action: 'home', href: '/admin/centers'},
+            {title: 'Nuevo Centro', action: 'home', href: '/admin/centers/new'},
+            {title: 'Servicios', action: 'service', href: '/admin/services'}
+          ]
+        }
       ]
     })
   };

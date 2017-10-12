@@ -26,9 +26,9 @@ module.exports = {
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
-    semi: ['error', 'always', { "omitLastInOneLineBlock": true}],
+    semi: 0,
     'no-unused-vars': ['warn'],
     'no-console': 0,
     'space-before-function-paren': 0
   }
-};
+}
