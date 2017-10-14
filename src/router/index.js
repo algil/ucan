@@ -2,9 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/Home';
 import AdminContainer from '../components/admin/AdminContainer.vue';
-import CenterList from '../components/admin/center/CenterList.vue';
-import CenterView from '../components/admin/center/CenterForm.vue';
 import ServiceList from '../components/admin/service/ServiceList.vue';
+import ServiceForm from '../components/admin/service/ServiceForm.vue';
 
 Vue.use(Router);
 
@@ -15,9 +14,8 @@ export default new Router({
       path: '/admin',
       component: AdminContainer,
       children: [
-        {path: 'centers', name: 'CenterList', component: CenterList},
-        {path: 'centers/:id', name: 'CenterView', component: CenterView},
-        {path: 'services', name: 'ServiceList', component: ServiceList}
+        {path: 'services', name: 'service-list', component: ServiceList},
+        {path: 'services/:id', name: 'service', component: ServiceForm}
       ]
     }
   ],

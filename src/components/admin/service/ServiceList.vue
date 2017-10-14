@@ -1,26 +1,23 @@
 <template>
-  <div>
-    <v-form v-if="service">
-      <v-container>
-        <v-layout column>
-          <v-flex xs12 md4 offset-md4 class="pa-4 elevation-1">
-            <v-text-field label="Nombre" v-model="service.name" required></v-text-field>
-            <v-text-field label="Precio" type="number" v-model="service.cost" suffix="€" required></v-text-field>
-            <v-switch label="Activo" v-model="service.active"></v-switch>
+  <v-card :class="{'card--flex-toolbar': $vuetify.breakpoint.smAndUp}">
+    <v-toolbar card color="white" prominent>
+      <v-toolbar-title class="body-2 grey--text" v-if="$vuetify.breakpoint.smAndUp">
+        {{$store.state.title}}
+      </v-toolbar-title>
 
-            <!-- Actions -->
-            <div class="text-xs-right">
-              <v-btn @click="cancel()">
-                <span>Cancel</span>
-              </v-btn>
-              <v-btn color="blue" dark @click="save()">
-                <span>Save</span>
-              </v-btn>
-            </div>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-form>
+      <v-spacer></v-spacer>
+
+      <v-tooltip bottom v-if="selected.length === 1">
+        <v-btn icon slot="activator" @click="edit()"><v-icon>mode_edit</v-icon></v-btn>
+        <span>Editar</span>
+      </v-tooltip>
+      <v-tooltip bottom v-if="selected.length > 0">
+        <v-btn icon slot="activator" @click="remove()"><v-icon>delete</v-icon></v-btn>
+        <span>Eliminar</span>
+      </v-tooltip>
+    </v-toolbar>
+
+    <v-divider></v-divider>
 
     <v-data-table
       :headers="gridConfig.headers"
@@ -28,48 +25,31 @@
       :pagination.sync="pagination"
       hide-actions
       v-model="selected"
+      select-all
       class="elevation-0">
-      <template slot="items" scope="props" >
-        <tr :class="{isDisabled: !props.item.active}">
-        <td class="hidden-sm-and-up">
-          {{ props.item.name }}<br>
-          {{ props.item.cost }}<br>
+      <tr slot="items" slot-scope="props">
+        <td>
+          <v-checkbox v-model="props.selected"></v-checkbox>
         </td>
-        <td class="hidden-xs-only">{{ props.item.name }}</td>
-        <td class="text-xs-center hidden-xs-only">{{ props.item.cost }}</td>
-        <td class="text-xs-center" style="width: 250px">
-          <v-btn flat icon @click="editService(props.item)">
-            <v-icon>edit</v-icon>
-          </v-btn>
-          <v-btn flat icon @click="deleteService(props.item.id)">
-            <v-icon>delete</v-icon>
-          </v-btn>
-        </td>
-        </tr>
-      </template>
+        <td :disabled="props.item.active">{{ props.item.name }}</td>
+        <td class="text-xs-center">{{ props.item.cost }} €</td>
+        <td class="text-xs-center"><v-icon v-if="props.item.active">check</v-icon></td>
+      </tr>
     </v-data-table>
 
-    <v-snackbar :timeout="snackBar.timeout" :color="snackBar.color" v-model="snackBar.show">
-      {{ snackBar.text }}
-      <v-btn dark flat @click.native="snackBar.show = false">Cerrar</v-btn>
-    </v-snackbar>
-  </div>
+    <v-card-text style="position: relative">
+        <v-btn absolute dark fab bottom right color="primary" @click="add()">
+          <v-icon>add</v-icon>
+        </v-btn>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
-  import {cloneDeep} from 'lodash';
-
   export default {
     name: 'service-list',
-    data() {
+    data: function () {
       return {
-        snackBar: {
-          text: '',
-          color: null,
-          show: false,
-          timeout: 3000
-        },
-        service: null,
         selected: [],
         pagination: {
           sortBy: 'cost',
@@ -78,7 +58,8 @@
         gridConfig: {
           headers: [
             {text: 'Nombre', value: 'name', align: 'left'},
-            {text: 'Precio', value: 'cost', align: 'center'}
+            {text: 'Precio', value: 'cost', align: 'center'},
+            {text: 'Activo', value: 'active', align: 'center'}
           ]
         },
         services: [
@@ -89,36 +70,20 @@
         ]
       };
     },
-    computed: {
-      activeServices() {
-        return this.services.filter((service) => service.active);
-      }
+    mounted: function () {
+      this.$store.commit('title', 'Servicios');
     },
     methods: {
-      cancel() {
-        this.service = null;
+      add: function () {
+        // TODO: Navigate to service form
+        this.$router.push({name: 'service', params: {id: 'new'}});
       },
-      save() {
-        let index = this.services.findIndex(service => service.id === this.service.id);
-        if (index !== -1) {
-          this.$set(this.services, index, this.service);
-        } else {
-          this.services.push(this.service);
-        }
-        this.service = null;
-        this.showSaveSuccessToast();
+      edit: function () {
+        // TODO: Navigate to service form wuth selected property
       },
-      editService(service) {
-        this.service = cloneDeep(service);
-      },
-      deleteService(id) {
-        // TODO: Modal dialog to confirm delete action
-        this.services = this.services.filter(service => service.id !== id);
-      },
-      showSaveSuccessToast() {
-        this.snackBar.text = 'Servicio guardado con éxito';
-        this.snackBar.color = 'success';
-        this.snackBar.show = true;
+      remove: function () {
+        // TODO: Show confirmation dialog
+        // TODO: If confirm, delete selected services
       }
     }
   };

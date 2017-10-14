@@ -5,13 +5,9 @@
     <main>
       <v-content>
         <v-container fluid>
-          <v-layout align-center justify-center>
-            <v-flex xs12 lg8>
-              <v-card>
-                <v-card-text>
-                  <router-view></router-view>
-                </v-card-text>
-              </v-card>
+          <v-layout row>
+            <v-flex xs12 sm8 offset-sm2>
+              <router-view></router-view>
             </v-flex>
           </v-layout>
         </v-container>
@@ -38,5 +34,9 @@
 </script>
 
 <style lang="stylus">
-  @import './stylus/main'
+  @import './stylus/main';
+
+  .card--flex-toolbar {
+    margin-top: -64px;
+  }
 </style>
