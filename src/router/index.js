@@ -15,7 +15,7 @@ export default new Router({
       component: AdminContainer,
       children: [
         {path: 'services', name: 'service-list', component: ServiceList},
-        {path: 'services/:id', name: 'service', component: ServiceForm}
+        {path: 'services/:id', name: 'service', component: ServiceForm, props: true}
       ]
     }
   ],

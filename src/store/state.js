@@ -1,4 +1,6 @@
 export default {
   sidebar: true,
-  title: ''
+  title: '',
+  // Values: main, admin
+  module: 'main'
 };

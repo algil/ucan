@@ -36,7 +36,4 @@
 <style lang="stylus">
   @import './stylus/main';
 
-  .card--flex-toolbar {
-    margin-top: -64px;
-  }
 </style>

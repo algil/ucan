@@ -23,10 +23,11 @@
       :headers="gridConfig.headers"
       :items="services"
       :pagination.sync="pagination"
+      :hide-headers="!services || services.length === 0"
       hide-actions
       v-model="selected"
       select-all
-      class="elevation-0">
+      no-data-text="No hay servicios. Puede añadir servicios pulsando el boton +">
       <tr slot="items" slot-scope="props">
         <td>
           <v-checkbox v-model="props.selected"></v-checkbox>
@@ -37,19 +38,35 @@
       </tr>
     </v-data-table>
 
-    <v-card-text style="position: relative">
-        <v-btn absolute dark fab bottom right color="primary" @click="add()">
+    <v-card-text class="fab-container">
+        <v-btn
+          absolute
+          dark
+          fab
+          bottom
+          right
+          :color="$store.getters.accentColor"
+          ref="fab"
+          @mouseenter="fabTooltip = true"
+          @mouseleave="fabTooltip = false"
+          @click="add()">
           <v-icon>add</v-icon>
         </v-btn>
+        <v-tooltip left :activator="fabButton" v-model="fabTooltip">
+          <span>Nuevo servicio</span>
+        </v-tooltip>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+  import {reject} from 'lodash';
+
   export default {
-    name: 'service-list',
     data: function () {
       return {
+        fabButton: null,
+        fabTooltip: false,
         selected: [],
         pagination: {
           sortBy: 'cost',
@@ -71,26 +88,24 @@
       };
     },
     mounted: function () {
+      this.fabButton = this.$refs.fab.$el;
       this.$store.commit('title', 'Servicios');
     },
     methods: {
       add: function () {
-        // TODO: Navigate to service form
         this.$router.push({name: 'service', params: {id: 'new'}});
       },
       edit: function () {
-        // TODO: Navigate to service form wuth selected property
+        this.$router.push({name: 'service', params: {id: this.selected[0].id}});
       },
       remove: function () {
         // TODO: Show confirmation dialog
         // TODO: If confirm, delete selected services
+        for (let service of this.selected) {
+          this.services = reject(this.services, (s) => s.id === service.id);
+        }
+        this.selected = [];
       }
     }
   };
 </script>
-
-<style>
-  .isDisabled {
-    background: gray;
-  }
-</style>

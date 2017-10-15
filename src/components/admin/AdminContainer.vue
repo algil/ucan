@@ -7,13 +7,12 @@
 <script>
   export default {
     name: 'admin-container',
-    data() {
+    data: function () {
       return {
       }
+    },
+    mounted: function () {
+      this.$store.commit('module', 'admin');
     }
   }
 </script>
-
-<style>
-
-</style>

@@ -42,7 +42,7 @@
 
 <script>
   export default {
-    name: 'service-form',
+    props: ['id'],
     data: function () {
       return {
         service: {},
@@ -60,20 +60,15 @@
     },
     methods: {
       init: function () {
-        this.loadParams();
+        this.isEditMode = this.id !== 'new';
         if (this.isEditMode) {
           this.loadService();
         } else {
           this.$store.commit('title', 'Nuevo Servicio');
         }
       },
-      loadParams: function () {
-        let serviceId = this.$route.params.id;
-        this.isEditMode = serviceId !== 'new';
-      },
       loadService: function() {
         // TODO: Load service from firebase
-        console.log('loading service');
         this.service = {id: 1, name: 'Servicio 1', cost: 12, active: true};
         this.$store.commit('title', `Editando servicio '${this.service.id}'`);
       },
@@ -87,18 +82,6 @@
         // TODO: Save service to firebase
         this.$router.push({name: 'service-list'});
       }
-    },
-    watch: {
-      '$route': function () {
-        this.init();
-      }
     }
   };
 </script>
-
-<style lang="stylus">
-
-  .card--flex-toolbar {
-    margin-top: -80px;
-  }
-</style>
