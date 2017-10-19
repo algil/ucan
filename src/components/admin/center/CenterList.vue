@@ -7,7 +7,7 @@
       hide-actions
       v-model="selected"
       class="elevation-0">
-      <template slot="items" scope="props" >
+      <template slot="items" scope="props">
         <tr :class="{isDisabled: !props.item.active}">
           <td class="hidden-sm-and-up">
             {{ props.item.name }}<br>
@@ -32,8 +32,7 @@
 
 <script>
   export default {
-    name: 'center-list',
-    data: function() {
+    data() {
       return {
         centers: [
           {id: 1, name: 'Torre Acosta', active: true},

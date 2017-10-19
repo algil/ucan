@@ -2,22 +2,28 @@
   <v-card :class="{'card--flex-toolbar': $vuetify.breakpoint.smAndUp}">
     <v-toolbar card color="white" prominent>
       <v-tooltip bottom>
-        <v-btn icon slot="activator" @click="navigateToServiceList()"><v-icon>arrow_back</v-icon></v-btn>
+        <v-btn icon slot="activator" @click="navigateToServiceList()">
+          <v-icon>arrow_back</v-icon>
+        </v-btn>
         <span>Volver</span>
       </v-tooltip>
 
-      <v-toolbar-title class="body-2 grey--text"  v-if="$vuetify.breakpoint.smAndUp">
+      <v-toolbar-title class="body-2 grey--text" v-if="$vuetify.breakpoint.smAndUp">
         {{$store.state.title}}
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
 
       <v-tooltip bottom>
-        <v-btn icon slot="activator" @click="navigateToServiceList()"><v-icon>clear</v-icon></v-btn>
+        <v-btn icon slot="activator" @click="navigateToServiceList()">
+          <v-icon>clear</v-icon>
+        </v-btn>
         <span>Cancelar</span>
       </v-tooltip>
       <v-tooltip bottom>
-        <v-btn icon slot="activator" @click="save()"><v-icon>check</v-icon></v-btn>
+        <v-btn icon slot="activator" @click="save()">
+          <v-icon>check</v-icon>
+        </v-btn>
         <span>Guardar</span>
       </v-tooltip>
     </v-toolbar>
@@ -36,14 +42,13 @@
       </v-container>
     </v-form>
   </v-card>
-
 </template>
 
 
 <script>
   export default {
     props: ['id'],
-    data: function () {
+    data() {
       return {
         service: {},
         isEditMode: false,
@@ -55,11 +60,11 @@
         ]
       };
     },
-    created: function () {
+    created() {
       this.init();
     },
     methods: {
-      init: function () {
+      init() {
         this.isEditMode = this.id !== 'new';
         if (this.isEditMode) {
           this.loadService();
@@ -67,18 +72,18 @@
           this.$store.commit('title', 'Nuevo Servicio');
         }
       },
-      loadService: function() {
+      loadService() {
         // TODO: Load service from firebase
         this.service = {id: 1, name: 'Servicio 1', cost: 12, active: true};
         this.$store.commit('title', `Editando servicio '${this.service.id}'`);
       },
-      navigateToServiceList: function () {
+      navigateToServiceList() {
         this.$router.push({name: 'service-list'});
       },
-      cancel: function () {
+      cancel() {
         this.navigateToServiceList();
       },
-      save: function () {
+      save() {
         // TODO: Save service to firebase
         this.$router.push({name: 'service-list'});
       }

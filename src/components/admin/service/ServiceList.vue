@@ -8,11 +8,15 @@
       <v-spacer></v-spacer>
 
       <v-tooltip bottom v-if="selected.length === 1">
-        <v-btn icon slot="activator" @click="edit()"><v-icon>mode_edit</v-icon></v-btn>
+        <v-btn icon slot="activator" @click="edit()">
+          <v-icon>mode_edit</v-icon>
+        </v-btn>
         <span>Editar</span>
       </v-tooltip>
       <v-tooltip bottom v-if="selected.length > 0">
-        <v-btn icon slot="activator" @click="remove()"><v-icon>delete</v-icon></v-btn>
+        <v-btn icon slot="activator" @click="remove()">
+          <v-icon>delete</v-icon>
+        </v-btn>
         <span>Eliminar</span>
       </v-tooltip>
     </v-toolbar>
@@ -34,36 +38,38 @@
         </td>
         <td :disabled="props.item.active">{{ props.item.name }}</td>
         <td class="text-xs-center">{{ props.item.cost }} €</td>
-        <td class="text-xs-center"><v-icon v-if="props.item.active">check</v-icon></td>
+        <td class="text-xs-center">
+          <v-icon v-if="props.item.active">check</v-icon>
+        </td>
       </tr>
     </v-data-table>
 
     <v-card-text class="fab-container">
-        <v-btn
-          absolute
-          dark
-          fab
-          bottom
-          right
-          :color="$store.getters.accentColor"
-          ref="fab"
-          @mouseenter="fabTooltip = true"
-          @mouseleave="fabTooltip = false"
-          @click="add()">
-          <v-icon>add</v-icon>
-        </v-btn>
-        <v-tooltip left :activator="fabButton" v-model="fabTooltip">
-          <span>Nuevo servicio</span>
-        </v-tooltip>
+      <v-btn
+        absolute
+        dark
+        fab
+        bottom
+        right
+        :color="$store.getters.accentColor"
+        ref="fab"
+        @mouseenter="fabTooltip = true"
+        @mouseleave="fabTooltip = false"
+        @click="add()">
+        <v-icon>add</v-icon>
+      </v-btn>
+      <v-tooltip left :activator="fabButton" v-model="fabTooltip">
+        <span>Nuevo servicio</span>
+      </v-tooltip>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-  import {reject} from 'lodash';
+  import { reject } from 'lodash';
 
   export default {
-    data: function () {
+    data() {
       return {
         fabButton: null,
         fabTooltip: false,
@@ -87,18 +93,18 @@
         ]
       };
     },
-    mounted: function () {
+    mounted() {
       this.fabButton = this.$refs.fab.$el;
       this.$store.commit('title', 'Servicios');
     },
     methods: {
-      add: function () {
+      add() {
         this.$router.push({name: 'service', params: {id: 'new'}});
       },
-      edit: function () {
+      edit() {
         this.$router.push({name: 'service', params: {id: this.selected[0].id}});
       },
-      remove: function () {
+      remove() {
         // TODO: Show confirmation dialog
         // TODO: If confirm, delete selected services
         for (let service of this.selected) {

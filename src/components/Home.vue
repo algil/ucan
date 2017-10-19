@@ -5,14 +5,12 @@
 </template>
 
 <script>
-export default {
-  name: 'home',
-  data () {
-    return {
-    };
-  },
-  mounted: function () {
-    this.$store.commit('module', 'main')
-  }
-};
+  export default {
+    data() {
+      return {};
+    },
+    mounted() {
+      this.$store.commit('module', 'main');
+    }
+  };
 </script>

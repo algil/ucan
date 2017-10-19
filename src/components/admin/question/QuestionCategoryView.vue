@@ -7,6 +7,5 @@
 
 <script>
   export default {
-    name: 'question-category-view'
   };
 </script>

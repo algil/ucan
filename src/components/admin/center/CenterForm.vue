@@ -7,7 +7,6 @@
 
 <script>
   export default {
-    name: 'center-form',
     data() {
       return {
         id: this.$route.params.id

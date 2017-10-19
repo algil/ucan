@@ -19,10 +19,10 @@
     },
     computed: {
       isActive: {
-        get () {
+        get() {
           return this.$store.state.sidebar;
         },
-        set (value) {
+        set(value) {
           this.$store.commit('sidebar', value);
         }
       }

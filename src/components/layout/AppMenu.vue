@@ -46,23 +46,25 @@
 <script>
   export default {
     name: 'app-menu',
-    data: () => ({
-      items: [
-        {title: 'Inicio', action: 'home', href: '/'},
-        {title: 'Nuevo Cliente', action: 'person_add', href: '/client/new'},
-        {title: 'Nueva Mascota', action: 'person_add', href: '/pet/new'},
-        {divider: true},
-        {
-          title: 'Administración',
-          action: 'settings',
-          group: 'admin',
-          items: [
-            {title: 'Centros', action: 'home', href: '/admin/centers'},
-            {title: 'Nuevo Centro', action: 'home', href: '/admin/centers/new'},
-            {title: 'Servicios', action: 'service', href: '/admin/services'}
-          ]
-        }
-      ]
-    })
+    data() {
+      return {
+        items: [
+          {title: 'Inicio', action: 'home', href: '/'},
+          {title: 'Nuevo Cliente', action: 'person_add', href: '/client/new'},
+          {title: 'Nueva Mascota', action: 'person_add', href: '/pet/new'},
+          {divider: true},
+          {
+            title: 'Administración',
+            action: 'settings',
+            group: 'admin',
+            items: [
+              {title: 'Centros', action: 'home', href: '/admin/centers'},
+              {title: 'Nuevo Centro', action: 'home', href: '/admin/centers/new'},
+              {title: 'Servicios', action: 'service', href: '/admin/services'}
+            ]
+          }
+        ]
+      }
+    }
   };
 </script>

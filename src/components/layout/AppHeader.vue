@@ -10,7 +10,7 @@
   export default {
     name: 'app-header',
     methods: {
-      toggleSidebar () {
+      toggleSidebar() {
         this.$store.commit('sidebar', !this.$store.state.sidebar);
       }
     }
