@@ -51,13 +51,7 @@
     data() {
       return {
         service: {},
-        isEditMode: false,
-        services: [
-          {id: 1, name: 'Servicio 1', cost: 12, active: true},
-          {id: 2, name: 'Servicio 2', cost: 24, active: true},
-          {id: 3, name: 'Servicio 3', cost: 30, active: false},
-          {id: 4, name: 'Servicio 4', cost: 48, active: true}
-        ]
+        isEditMode: false
       };
     },
     created() {
@@ -72,10 +66,9 @@
           this.$store.commit('title', 'Nuevo Servicio');
         }
       },
-      loadService() {
-        // TODO: Load service from firebase
-        this.service = {id: 1, name: 'Servicio 1', cost: 12, active: true};
-        this.$store.commit('title', `Editando servicio '${this.service.id}'`);
+      async loadService() {
+        this.service = await this.$store.dispatch('services/get', this.id);
+        this.$store.commit('title', `Editando servicio '${this.service.name}'`);
       },
       navigateToServiceList() {
         this.$router.push({name: 'service-list'});
@@ -83,8 +76,8 @@
       cancel() {
         this.navigateToServiceList();
       },
-      save() {
-        // TODO: Save service to firebase
+      async save() {
+        await this.$store.dispatch('services/save', this.service);
         this.$router.push({name: 'service-list'});
       }
     }

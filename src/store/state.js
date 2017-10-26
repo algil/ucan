@@ -1,6 +1,8 @@
 export default {
+  // Values: main, admin
+  module: 'main',
   sidebar: true,
   title: '',
-  // Values: main, admin
-  module: 'main'
+  loading: false,
+  notification: null
 };
