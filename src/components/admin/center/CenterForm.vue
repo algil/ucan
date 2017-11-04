@@ -14,7 +14,6 @@
     },
     computed: {
       isEditMode() {
-        console.log(this.id);
         return this.id !== 'new';
       }
     }

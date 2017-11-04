@@ -21,14 +21,18 @@ export async function getAll() {
 }
 
 export async function save(service) {
-  if (service.id) {
-    await servicesRef.doc(service.id).update({
-      name: service.name,
-      cost: service.cost,
-      active: service.active
-    });
-  } else {
-    await servicesRef.add(service);
+  try {
+    if (service.id) {
+      await servicesRef.doc(service.id).update({
+        name: service.name,
+        cost: service.cost,
+        active: service.active
+      });
+    } else {
+      await servicesRef.add(service);
+    }
+  } catch (e) {
+    console.error(e);
   }
 }
 

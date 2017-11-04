@@ -31,4 +31,4 @@ module.exports = {
     'no-console': 0,
     'space-before-function-paren': 0
   }
-}
+};

@@ -1,0 +1,139 @@
+<template>
+  <div>
+    <v-card v-if="!isMobile" class="card--flex-toolbar">
+      <v-toolbar card color="white" prominent>
+        <v-toolbar-title class="body-2 grey--text">{{$store.state.title}}</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <service-list-actions></service-list-actions>
+      </v-toolbar>
+
+      <v-divider></v-divider>
+
+      <v-data-table
+        :headers="headers"
+        :items="services"
+        :pagination.sync="pagination"
+        :hide-headers="!services || services.length === 0"
+        hide-actions
+        v-model="selected"
+        select-all
+        no-data-text="No hay servicios. Puede añadir servicios pulsando el boton +">
+        <tr slot="items" slot-scope="props">
+          <td>
+            <v-checkbox v-model="props.selected"></v-checkbox>
+          </td>
+          <td>{{ props.item.name }}</td>
+          <td class="text-xs-center">{{ props.item.cost }} €</td>
+          <td class="text-xs-center">
+            <v-icon v-show="props.item.active">check</v-icon>
+          </td>
+        </tr>
+      </v-data-table>
+
+      <v-card-text class="fab-container">
+        <v-btn
+          absolute
+          dark
+          fab
+          bottom
+          right
+          :color="$store.getters.accentColor"
+          ref="fab"
+          @mouseenter="fabTooltip = true"
+          @mouseleave="fabTooltip = false"
+          @click="add()">
+          <v-icon>add</v-icon>
+        </v-btn>
+        <v-tooltip left :activator="fabButton" v-model="fabTooltip">
+          <span>Nuevo servicio</span>
+        </v-tooltip>
+      </v-card-text>
+    </v-card>
+
+    <v-list two-line v-else-if="isMobile">
+      <template v-for="(service, index) in services">
+        <v-list-tile avatar>
+          <v-list-tile-action>
+            <v-checkbox v-model="service.selected" @change="onSelect(service)"></v-checkbox>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{service.name}}</v-list-tile-title>
+            <v-list-tile-sub-title>{{service.cost}} €</v-list-tile-sub-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-divider v-show="index !== services.length - 1"></v-divider>
+      </template>
+
+      <v-fab-transition>
+        <v-btn
+          :color="$store.getters.accentColor"
+          dark
+          fab
+          fixed
+          bottom
+          right
+          @click="add()">
+          <v-icon>add</v-icon>
+        </v-btn>
+      </v-fab-transition>
+    </v-list>
+  </div>
+</template>
+
+<script>
+  import ServiceListActions from './ServiceListActions.vue';
+
+  export default {
+    name: 'service-list',
+    components: {ServiceListActions},
+    data() {
+      return {
+        services: [],
+        selected: [],
+        fabButton: null,
+        fabTooltip: false,
+        headers: [
+          {text: 'Nombre', value: 'name', align: 'left', width: '60%'},
+          {text: 'Precio', value: 'cost', align: 'center', width: '20%'},
+          {text: 'Activo', value: 'active', align: 'center', width: '20%'}
+        ],
+        pagination: {
+          sortBy: 'cost',
+          descending: false
+        }
+      };
+    },
+    mounted() {
+      this.fabButton = this.$refs.fab ? this.$refs.fab.$el : null;
+      this.$store.commit('title', 'Servicios');
+      this.$events.on('service-list-changed', () => this.loadServices());
+      this.loadServices();
+    },
+    beforeDestroy() {
+      this.$events.off('service-list-changed');
+    },
+    methods: {
+      async loadServices() {
+        this.selected = [];
+        this.services = await this.$store.dispatch('services/getAll');
+      },
+      add() {
+        this.$router.push({name: 'service-item', params: {id: 'new'}});
+      },
+      onSelect(service) {
+        console.log('ServiceList onSelect');
+        if (service.selected) {
+          this.selected.push(service);
+        } else {
+          this.selected = this.selected.filter(s => s.id !== service.id);
+        }
+      }
+    },
+    watch: {
+      selected: function (value) {
+        console.log('ServiceList watch selected');
+        this.$events.emit('service-list-selection-changed', value);
+      }
+    }
+  };
+</script>

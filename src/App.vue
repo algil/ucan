@@ -2,7 +2,9 @@
   <v-app id="app">
     <app-sidebar></app-sidebar>
     <app-header></app-header>
+
     <v-content>
+      <!-- BUSY INDICATOR -->
       <v-container fluid fill-height v-show="$store.state.loading">
         <v-layout align-center justify-center>
           <v-progress-circular
@@ -12,13 +14,23 @@
           </v-progress-circular>
         </v-layout>
       </v-container>
-      <v-container fluid v-show="!$store.state.loading">
-        <v-layout row>
-          <v-flex xs12 sm8 offset-sm2>
+
+      <!-- MAIN VIEW -->
+      <div v-show="!$store.state.loading">
+        <v-container fluid v-if="!isMobile" key="main-desktop">
+          <v-layout row>
+            <v-flex xs12 sm8 offset-sm2>
+              <router-view></router-view>
+            </v-flex>
+          </v-layout>
+        </v-container>
+
+        <v-layout row v-else-if="isMobile" key="main-desktop">
+          <v-flex xs12>
             <router-view></router-view>
           </v-flex>
         </v-layout>
-      </v-container>
+      </div>
     </v-content>
   </v-app>
 </template>
