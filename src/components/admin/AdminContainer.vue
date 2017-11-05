@@ -5,11 +5,9 @@
 <script>
   export default {
     name: 'admin-container',
-    data() {
-      return {}
-    },
-    mounted() {
-      this.$store.commit('module', 'admin');
+    created() {
+      this.$vuetify.theme.primary = '#fea129';
+      this.$vuetify.theme.accent = '#ffd74f';
     }
   }
 </script>

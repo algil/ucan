@@ -9,8 +9,7 @@
     data() {
       return {};
     },
-    mounted() {
-      this.$store.commit('module', 'main');
+    created() {
     }
   };
 </script>

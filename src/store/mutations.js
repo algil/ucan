@@ -1,7 +1,4 @@
 export default {
-  module(state, payload) {
-    state.module = payload;
-  },
   sidebar(state, payload) {
     state.sidebar = payload;
   },

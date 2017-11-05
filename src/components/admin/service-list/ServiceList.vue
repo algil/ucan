@@ -37,7 +37,7 @@
           fab
           bottom
           right
-          :color="$store.getters.accentColor"
+          color="accent"
           ref="fab"
           @mouseenter="fabTooltip = true"
           @mouseleave="fabTooltip = false"
@@ -66,7 +66,7 @@
 
       <v-fab-transition>
         <v-btn
-          :color="$store.getters.accentColor"
+          color="accent"
           dark
           fab
           fixed

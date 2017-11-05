@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar dark app :extended="$vuetify.breakpoint.smAndUp" :color="$store.getters.primaryColor">
+  <v-toolbar dark app :extended="$vuetify.breakpoint.smAndUp" color="primary">
     <v-toolbar-side-icon @click.stop="toggleSidebar"></v-toolbar-side-icon>
     <v-toolbar-title v-if="isMobile">{{$store.state.title}}</v-toolbar-title>
 

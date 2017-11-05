@@ -10,7 +10,7 @@
           <v-progress-circular
             indeterminate
             :size="75"
-            :color="$store.getters.primaryColor">
+            color="primary">
           </v-progress-circular>
         </v-layout>
       </v-container>
@@ -44,9 +44,6 @@
     components: {
       AppSidebar,
       AppHeader
-    },
-    data() {
-      return {};
     }
   };
 </script>
