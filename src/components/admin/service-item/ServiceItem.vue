@@ -41,7 +41,7 @@
 
 <script>
   import ServiceItemActions from './ServiceItemActions.vue';
-  import { SERVICE_SAVE_EVENT, SERVICE_CANCEL_EVENT } from '../../../events-types';
+  import * as EventTypes from '../../../event-types';
 
   export default {
     props: ['id'],
@@ -50,18 +50,20 @@
     },
     data() {
       return {
-        service: {},
+        service: {
+          active: true
+        },
         isEditMode: false
       };
     },
     mounted() {
       this.init();
-      this.$events.on(SERVICE_SAVE_EVENT, () => this.save());
-      this.$events.on(SERVICE_CANCEL_EVENT, () => this.navigateToServiceList());
+      this.$events.on(EventTypes.SERVICE_ON_SAVE, this.save);
+      this.$events.on(EventTypes.SERVICE_ON_CANCEL, this.navigateToServiceList);
     },
     beforeDestroy() {
-      this.$events.off(SERVICE_SAVE_EVENT);
-      this.$events.off(SERVICE_CANCEL_EVENT);
+      this.$events.off(EventTypes.SERVICE_ON_SAVE, this.save);
+      this.$events.off(EventTypes.SERVICE_ON_CANCEL, this.navigateToServiceList);
     },
     methods: {
       init() {
@@ -70,7 +72,6 @@
           this.loadService();
         } else {
           this.$store.commit('title', 'Nuevo Servicio');
-          this.service.active = true;
         }
       },
       async loadService() {

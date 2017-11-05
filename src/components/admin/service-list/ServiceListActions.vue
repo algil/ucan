@@ -2,7 +2,7 @@
   <div>
     <!-- EDIT -->
     <v-tooltip bottom v-show="selected.length === 1">
-      <v-btn icon slot="activator" @click="edit()">
+      <v-btn icon slot="activator" @click="onEdit()">
         <v-icon>mode_edit</v-icon>
       </v-btn>
       <span>Editar</span>
@@ -10,7 +10,7 @@
 
     <!-- REMOVE -->
     <v-tooltip bottom v-show="selected.length > 0">
-      <v-btn icon slot="activator" @click="remove()">
+      <v-btn icon slot="activator" @click="onRemove()">
         <v-icon>delete</v-icon>
       </v-btn>
       <span>Eliminar</span>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+  import * as EventTypes from '../../../event-types';
+
   export default {
     name: 'service-list-actions',
     data() {
@@ -26,33 +28,21 @@
         selected: []
       }
     },
-    created() {
-      console.log('ServiceListActions Created');
-    },
     mounted() {
-      console.log('ServiceListActions Mounted', this._uid);
-      this.$events.on('service-list-selection-changed', (value) => {
-        console.log('on service-list-selection-changed', value);
-        this.selected = value;
-      });
+      this.$events.on(EventTypes.SERVICE_LIST_ON_SELECT, this.onSelectionChange);
     },
     beforeDestroy() {
-      console.log('ServiceListActions BeforeDestroy', this._uid);
-      this.$events.off('service-list-selection-changed');
-      console.log(this.$events);
+      this.$events.off(EventTypes.SERVICE_LIST_ON_SELECT, this.onSelectionChange);
     },
     methods: {
-      edit() {
-        this.$router.push({name: 'service-item', params: {id: this.selected[0].id}});
+      onEdit() {
+        this.$events.emit(EventTypes.SERVICE_LIST_ON_EDIT);
       },
-      async remove() {
-        // TODO: Show confirmation dialog
-        // TODO: If confirm, delete selected services
-        await this.$store.dispatch('services/remove', this.selected);
-        this.notifyChanges();
+      onRemove() {
+        this.$events.emit(EventTypes.SERVICE_LIST_DELETE);
       },
-      notifyChanges() {
-        this.$events.emit('service-list-changed');
+      onSelectionChange(selected) {
+        this.selected = selected;
       }
     }
   }

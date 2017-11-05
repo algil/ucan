@@ -82,6 +82,7 @@
 
 <script>
   import ServiceListActions from './ServiceListActions.vue';
+  import * as EventTypes from '../../../event-types';
 
   export default {
     name: 'service-list',
@@ -104,13 +105,15 @@
       };
     },
     mounted() {
+      this.$events.on(EventTypes.SERVICE_LIST_ON_EDIT, this.edit);
+      this.$events.on(EventTypes.SERVICE_LIST_DELETE, this.remove);
       this.fabButton = this.$refs.fab ? this.$refs.fab.$el : null;
       this.$store.commit('title', 'Servicios');
-      this.$events.on('service-list-changed', () => this.loadServices());
       this.loadServices();
     },
     beforeDestroy() {
-      this.$events.off('service-list-changed');
+      this.$events.off(EventTypes.SERVICE_LIST_ON_EDIT, this.edit);
+      this.$events.off(EventTypes.SERVICE_LIST_DELETE, this.remove);
     },
     methods: {
       async loadServices() {
@@ -120,8 +123,16 @@
       add() {
         this.$router.push({name: 'service-item', params: {id: 'new'}});
       },
+      edit() {
+        this.$router.push({name: 'service-item', params: {id: this.selected[0].id}});
+      },
+      async remove() {
+        // TODO: Show confirmation dialog
+        // TODO: If confirm, delete selected services
+        await this.$store.dispatch('services/remove', this.selected);
+        this.loadServices();
+      },
       onSelect(service) {
-        console.log('ServiceList onSelect');
         if (service.selected) {
           this.selected.push(service);
         } else {
@@ -131,8 +142,7 @@
     },
     watch: {
       selected: function (value) {
-        console.log('ServiceList watch selected');
-        this.$events.emit('service-list-selection-changed', value);
+        this.$events.emit(EventTypes.SERVICE_LIST_ON_SELECT, value);
       }
     }
   };

@@ -1,0 +1,49 @@
+<v-card class="card--flex-toolbar">
+  <v-toolbar card color="white" prominent>
+    <v-toolbar-title class="body-2 grey--text">{{$store.state.title}}</v-toolbar-title>
+    <v-spacer></v-spacer>
+    <service-list-actions></service-list-actions>
+  </v-toolbar>
+
+  <v-divider></v-divider>
+
+  <v-data-table
+    :headers="headers"
+    :items="services"
+    :pagination.sync="pagination"
+    :hide-headers="!services || services.length === 0"
+    hide-actions
+    v-model="selected"
+    select-all
+    no-data-text="No hay servicios. Puede añadir servicios pulsando el boton +">
+    <tr slot="items" slot-scope="props">
+      <td>
+        <v-checkbox v-model="props.selected"></v-checkbox>
+      </td>
+      <td>{{ props.item.name }}</td>
+      <td class="text-xs-center">{{ props.item.cost }} €</td>
+      <td class="text-xs-center">
+        <v-icon v-show="props.item.active">check</v-icon>
+      </td>
+    </tr>
+  </v-data-table>
+
+  <v-card-text class="fab-container">
+    <v-btn
+      absolute
+      dark
+      fab
+      bottom
+      right
+      :color="$store.getters.accentColor"
+      ref="fab"
+      @mouseenter="fabTooltip = true"
+      @mouseleave="fabTooltip = false"
+      @click="add()">
+      <v-icon>add</v-icon>
+    </v-btn>
+    <v-tooltip left :activator="fabButton" v-model="fabTooltip">
+      <span>Nuevo servicio</span>
+    </v-tooltip>
+  </v-card-text>
+</v-card>
