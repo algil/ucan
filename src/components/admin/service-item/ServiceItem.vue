@@ -4,6 +4,7 @@
     <v-card v-show="!isMobile" class="card--flex-toolbar">
       <!-- TOOLBAR -->
       <v-toolbar card color="white" prominent>
+        <v-btn icon @click.stop="navigateToServiceList"><v-icon>arrow_back</v-icon></v-btn>
         <v-toolbar-title class="body-2 grey--text">{{$store.state.title}}</v-toolbar-title>
         <v-spacer></v-spacer>
         <service-item-actions></service-item-actions>
@@ -58,12 +59,16 @@
     },
     mounted() {
       this.init();
+      if (this.isMobile) {
+        this.$store.commit('showBack', true);
+      }
+      this.$events.on(EventTypes.GO_BACK, this.navigateToServiceList);
       this.$events.on(EventTypes.SERVICE_ON_SAVE, this.save);
-      this.$events.on(EventTypes.SERVICE_ON_CANCEL, this.navigateToServiceList);
     },
     beforeDestroy() {
+      this.$store.commit('showBack', false);
+      this.$events.off(EventTypes.GO_BACK, this.navigateToServiceList);
       this.$events.off(EventTypes.SERVICE_ON_SAVE, this.save);
-      this.$events.off(EventTypes.SERVICE_ON_CANCEL, this.navigateToServiceList);
     },
     methods: {
       init() {

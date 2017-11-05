@@ -2,7 +2,7 @@
   <div>
     <!-- EDIT -->
     <v-tooltip bottom v-show="selected.length === 1">
-      <v-btn icon slot="activator" @click="onEdit()" color="">
+      <v-btn icon slot="activator" @click="onEdit()">
         <v-icon>mode_edit</v-icon>
       </v-btn>
       <span>Editar</span>

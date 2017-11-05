@@ -1,4 +1,7 @@
 export default {
+  showBack(state, payload) {
+    state.showBack = payload;
+  },
   sidebar(state, payload) {
     state.sidebar = payload;
   },
