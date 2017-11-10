@@ -12,42 +12,24 @@
       <v-divider></v-divider>
 
       <!-- FORM -->
-      <v-form>
-        <v-container>
-          <v-layout column>
-            <v-flex xs12 md8 offset-md2>
-              <v-text-field label="Nombre" v-model="service.name" required></v-text-field>
-              <v-text-field label="Precio" type="number" v-model="service.cost" suffix="€" required></v-text-field>
-              <v-checkbox label="Activo" v-model="service.active"></v-checkbox>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-form>
+      <service-item-form :service="service"></service-item-form>
     </v-card>
 
     <!-- MOBILE -->
-    <v-form v-show="isMobile">
-      <v-container>
-        <v-layout column>
-          <v-flex xs12 md8 offset-md2>
-            <v-text-field label="Nombre" v-model="service.name" required></v-text-field>
-            <v-text-field label="Precio" type="number" v-model="service.cost" suffix="€" required></v-text-field>
-            <v-checkbox label="Activo" v-model="service.active"></v-checkbox>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-form>
+    <service-item-form v-show="isMobile" :service="service"></service-item-form>
   </div>
 </template>
 
 <script>
   import ServiceItemActions from './ServiceItemActions.vue';
+  import ServiceItemForm from './ServiceItemForm.vue';
   import * as EventTypes from '../../../event-types';
 
   export default {
     props: ['id'],
     components: {
-      ServiceItemActions
+      ServiceItemActions,
+      ServiceItemForm
     },
     data() {
       return {
