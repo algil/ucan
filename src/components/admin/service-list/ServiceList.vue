@@ -100,7 +100,8 @@
         ],
         pagination: {
           sortBy: 'cost',
-          descending: false
+          descending: false,
+          rowsPerPage: 1000000
         }
       };
     },
