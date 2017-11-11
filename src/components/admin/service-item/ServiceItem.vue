@@ -71,7 +71,6 @@
       },
       // TODO: Validate form
       async save() {
-        this.$validator.validateAll();
         this.$events.emit(EventTypes.VALIDATE);
         if (!this.errors.any()) {
           await this.$store.dispatch('services/save', this.service);
