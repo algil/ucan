@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import VueEvents from 'vue-events'
+import VeeValidate from 'vee-validate';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 
 Vue.use(Vuetify);
 Vue.use(VueEvents);
+Vue.use(VeeValidate);
 Vue.config.productionTip = false;
 
 Object.defineProperties(Vue.prototype, {
