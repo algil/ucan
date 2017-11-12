@@ -35,6 +35,8 @@
 
     <!--Dialog-->
     <app-dialog></app-dialog>
+    <!--Snack bar-->
+    <app-snack-bar></app-snack-bar>
   </v-app>
 </template>
 

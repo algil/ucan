@@ -18,7 +18,6 @@
 
 <script>
   const ESC_KEY_CODE = 27;
-  // const ENTER_KEY_CODE = 13;
 
   export default {
     data() {
@@ -27,7 +26,8 @@
         title: '',
         message: '',
         modal: true,
-        buttons: [
+        buttons: [],
+        defaultButtons: [
           {title: 'Close', action: this.hide}
         ]
       }
@@ -49,9 +49,7 @@
       show(params) {
         this.title = params.title;
         this.message = params.message;
-        if (params.buttons) {
-          this.buttons = params.buttons;
-        }
+        this.buttons = params.buttons || this.defaultButtons;
         this.showDialog = true;
       },
       hide() {

@@ -121,6 +121,7 @@
       },
       async remove() {
         await this.$store.dispatch('services/remove', this.selected);
+        this.$snackBar.show('Service/s deleted');
         this.loadServices();
       },
       onSelect(service) {
