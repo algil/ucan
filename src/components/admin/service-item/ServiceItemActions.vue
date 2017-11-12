@@ -5,7 +5,7 @@
       <v-btn icon slot="activator" @click="onSave()">
         <v-icon>check</v-icon>
       </v-btn>
-      <span>Save</span>
+      <span>{{ $t('label.save') }}</span>
     </v-tooltip>
   </div>
 </template>

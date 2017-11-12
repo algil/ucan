@@ -28,7 +28,7 @@
         modal: true,
         buttons: [],
         defaultButtons: [
-          {title: 'Close', action: this.hide}
+          {title: this.$t('label.close'), action: this.hide}
         ]
       }
     },

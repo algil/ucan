@@ -10,14 +10,14 @@
       <v-divider></v-divider>
 
       <v-data-table
-        :headers="gridConfig.headers"
+        :headers="headers"
         :items="services"
-        :pagination.sync="gridConfig.pagination"
+        :pagination.sync="pagination"
         :hide-headers="!services || services.length === 0"
         hide-actions
         v-model="selected"
         select-all
-        no-data-text="There are not services. You can add a new service with 'New' button">
+        :no-data-text="$t('service.noData')">
         <tr slot="items" slot-scope="props">
           <td>
             <v-checkbox v-model="props.selected"></v-checkbox>
@@ -45,7 +45,7 @@
           <v-icon>add</v-icon>
         </v-btn>
         <v-tooltip left :activator="fabButton" v-model="fabTooltip">
-          <span>New</span>
+          <span>{{ $t('label.new') }}</span>
         </v-tooltip>
       </v-card-text>
     </v-card>
@@ -83,7 +83,6 @@
 <script>
   import ServiceListActions from './ServiceListActions.vue';
   import * as EventTypes from '../../../event-types';
-  import gridConfig from './grid-config';
 
   export default {
     name: 'service-list',
@@ -94,14 +93,23 @@
         selected: [],
         fabButton: null,
         fabTooltip: false,
-        gridConfig: gridConfig
+        headers: [
+          {text: this.$t('label.name'), value: 'name', align: 'left', width: '60%'},
+          {text: this.$t('label.cost'), value: 'cost', align: 'center', width: '20%'},
+          {text: this.$t('label.active'), value: 'active', align: 'center', width: '20%'}
+        ],
+        pagination: {
+          sortBy: 'cost',
+          descending: false,
+          rowsPerPage: 1000000
+        }
       };
     },
     mounted() {
       this.$events.on(EventTypes.SERVICE_LIST_ON_EDIT, this.edit);
       this.$events.on(EventTypes.SERVICE_LIST_DELETE, this.remove);
       this.fabButton = this.$refs.fab ? this.$refs.fab.$el : null;
-      this.$store.commit('title', 'Services');
+      this.$store.commit('title', this.$t('service.titleList'));
       this.loadServices();
     },
     beforeDestroy() {
@@ -121,7 +129,7 @@
       },
       async remove() {
         await this.$store.dispatch('services/remove', this.selected);
-        this.$snackBar.show('Service/s deleted');
+        this.$snackBar.show(this.$tc('service.deleteSuccess', this.selected.length));
         this.loadServices();
       },
       onSelect(service) {

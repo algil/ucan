@@ -5,7 +5,7 @@
       <v-btn icon slot="activator" @click="onEdit()">
         <v-icon>mode_edit</v-icon>
       </v-btn>
-      <span>Edit</span>
+      <span>{{ $t('label.edit') }}</span>
     </v-tooltip>
 
     <!-- REMOVE -->
@@ -13,7 +13,7 @@
       <v-btn icon slot="activator" @click="showDeleteConfirmation()">
         <v-icon>delete</v-icon>
       </v-btn>
-      <span>Delete</span>
+      <span>{{ $t('label.delete') }}</span>
     </v-tooltip>
   </div>
 </template>
@@ -45,11 +45,11 @@
       },
       showDeleteConfirmation() {
         this.$dialog.show({
-          title: this.selected.length === 1 ? `Delete '${this.serviceLabel}' service` : `Delete ${this.serviceLabel} services`,
-          message: this.selected.length === 1 ? 'Are you sure delete selected service?' : 'Are you sure delete selected services?',
+          title: this.$tc('service.deleteDialog.title', this.selected.length, {value: this.serviceLabel}),
+          message: this.$tc('service.deleteDialog.message', this.selected.length, {name: this.selected.length}),
           buttons: [
-            {title: 'Delete', action: this.onRemove},
-            {title: 'Cancel'}
+            {title: this.$t('label.delete'), action: this.onRemove},
+            {title: this.$t('label.cancel')}
           ]
         });
       },

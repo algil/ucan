@@ -8,7 +8,7 @@
           <v-btn icon slot="activator" @click.stop="navigateToServiceList">
             <v-icon>arrow_back</v-icon>
           </v-btn>
-          <span>Back</span>
+          <span>{{ $t('label.back') }}</span>
         </v-tooltip>
         <v-toolbar-title class="body-2 grey--text">{{$store.state.title}}</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -65,7 +65,7 @@
         if (this.isEditMode) {
           this.loadService();
         } else {
-          this.$store.commit('title', 'New Service');
+          this.$store.commit('title', this.$t('service.titleNew'));
         }
       },
       async loadService() {
@@ -76,7 +76,7 @@
         this.$events.emit(EventTypes.VALIDATE);
         if (!this.errors.any()) {
           await this.$store.dispatch('services/save', this.service);
-          this.$snackBar.show('Service saved');
+          this.$snackBar.show(this.$t('service.saveSuccess'));
           this.navigateToServiceList();
         }
       },
