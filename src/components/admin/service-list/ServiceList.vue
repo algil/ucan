@@ -17,7 +17,7 @@
         hide-actions
         v-model="selected"
         select-all
-        no-data-text="No hay servicios. Puede añadir servicios pulsando el boton +">
+        no-data-text="There are not services. You can add a new service with 'New' button">
         <tr slot="items" slot-scope="props">
           <td>
             <v-checkbox v-model="props.selected"></v-checkbox>
@@ -45,7 +45,7 @@
           <v-icon>add</v-icon>
         </v-btn>
         <v-tooltip left :activator="fabButton" v-model="fabTooltip">
-          <span>Nuevo servicio</span>
+          <span>New</span>
         </v-tooltip>
       </v-card-text>
     </v-card>
@@ -101,7 +101,7 @@
       this.$events.on(EventTypes.SERVICE_LIST_ON_EDIT, this.edit);
       this.$events.on(EventTypes.SERVICE_LIST_DELETE, this.remove);
       this.fabButton = this.$refs.fab ? this.$refs.fab.$el : null;
-      this.$store.commit('title', 'Servicios');
+      this.$store.commit('title', 'Services');
       this.loadServices();
     },
     beforeDestroy() {

@@ -4,9 +4,12 @@
     <v-card v-if="!isMobile" class="card--flex-toolbar">
       <!-- TOOLBAR -->
       <v-toolbar card color="white" prominent>
-        <v-btn icon @click.stop="navigateToServiceList">
-          <v-icon>arrow_back</v-icon>
-        </v-btn>
+        <v-tooltip bottom>
+          <v-btn icon slot="activator" @click.stop="navigateToServiceList">
+            <v-icon>arrow_back</v-icon>
+          </v-btn>
+          <span>Back</span>
+        </v-tooltip>
         <v-toolbar-title class="body-2 grey--text">{{$store.state.title}}</v-toolbar-title>
         <v-spacer></v-spacer>
         <service-item-actions></service-item-actions>
@@ -62,14 +65,13 @@
         if (this.isEditMode) {
           this.loadService();
         } else {
-          this.$store.commit('title', 'Nuevo Servicio');
+          this.$store.commit('title', 'New Service');
         }
       },
       async loadService() {
         this.service = await this.$store.dispatch('services/get', this.id);
         this.$store.commit('title', `'${this.service.name}'`);
       },
-      // TODO: Validate form
       async save() {
         this.$events.emit(EventTypes.VALIDATE);
         if (!this.errors.any()) {

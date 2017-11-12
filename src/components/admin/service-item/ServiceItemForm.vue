@@ -4,7 +4,7 @@
       <v-layout column>
         <v-flex xs12 md8 offset-md2>
           <v-text-field
-            label="Nombre"
+            label="Name"
             v-model="service.name"
             data-vv-name="name"
             :error-messages="errors.collect('name')"
@@ -12,7 +12,7 @@
             required>
           </v-text-field>
           <v-text-field
-            label="Precio"
+            label="Cost"
             type="number"
             v-model="service.cost"
             suffix="€"
@@ -22,7 +22,7 @@
             required>
           </v-text-field>
           <v-checkbox
-            label="Activo"
+            label="Active"
             v-model="service.active">
           </v-checkbox>
         </v-flex>

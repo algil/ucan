@@ -5,7 +5,7 @@
       <v-btn icon slot="activator" @click="onEdit()">
         <v-icon>mode_edit</v-icon>
       </v-btn>
-      <span>Editar</span>
+      <span>Edit</span>
     </v-tooltip>
 
     <!-- REMOVE -->
@@ -13,7 +13,7 @@
       <v-btn icon slot="activator" @click="showDeleteConfirmation()">
         <v-icon>delete</v-icon>
       </v-btn>
-      <span>Eliminar</span>
+      <span>Delete</span>
     </v-tooltip>
   </div>
 </template>

@@ -5,7 +5,7 @@
       <v-btn icon slot="activator" @click="onSave()">
         <v-icon>check</v-icon>
       </v-btn>
-      <span>Guardar</span>
+      <span>Save</span>
     </v-tooltip>
   </div>
 </template>
