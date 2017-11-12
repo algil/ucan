@@ -1,6 +1,6 @@
 export default {
   showBack: false,
-  sidebar: true,
+  sidebar: null,
   title: '',
   loading: false,
   notification: null

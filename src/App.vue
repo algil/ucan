@@ -32,6 +32,9 @@
         </v-layout>
       </div>
     </v-content>
+
+    <!--Dialog-->
+    <app-dialog></app-dialog>
   </v-app>
 </template>
 

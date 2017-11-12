@@ -128,8 +128,6 @@
         this.$router.push({name: 'service-item', params: {id: this.selected[0].id}});
       },
       async remove() {
-        // TODO: Show confirmation dialog
-        // TODO: If confirm, delete selected services
         await this.$store.dispatch('services/remove', this.selected);
         this.loadServices();
       },

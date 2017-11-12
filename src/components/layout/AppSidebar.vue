@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer persistent v-model="isActive" enable-resize-watcher app>
+  <v-navigation-drawer absolute permanent v-model="isActive" app>
     <div class="text-xs-center pa-3">
       <div class="display-2 py-2">Ucan</div>
       <p>Cuidado y adiestramiento de mascotas</p>
