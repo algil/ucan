@@ -10,9 +10,9 @@
       <v-divider></v-divider>
 
       <v-data-table
-        :headers="headers"
+        :headers="gridConfig.headers"
         :items="services"
-        :pagination.sync="pagination"
+        :pagination.sync="gridConfig.pagination"
         :hide-headers="!services || services.length === 0"
         hide-actions
         v-model="selected"
@@ -83,6 +83,7 @@
 <script>
   import ServiceListActions from './ServiceListActions.vue';
   import * as EventTypes from '../../../event-types';
+  import gridConfig from './grid-config';
 
   export default {
     name: 'service-list',
@@ -93,16 +94,7 @@
         selected: [],
         fabButton: null,
         fabTooltip: false,
-        headers: [
-          {text: 'Nombre', value: 'name', align: 'left', width: '60%'},
-          {text: 'Precio', value: 'cost', align: 'center', width: '20%'},
-          {text: 'Activo', value: 'active', align: 'center', width: '20%'}
-        ],
-        pagination: {
-          sortBy: 'cost',
-          descending: false,
-          rowsPerPage: 1000000
-        }
+        gridConfig: gridConfig
       };
     },
     mounted() {
