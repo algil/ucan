@@ -129,7 +129,7 @@
       },
       async remove() {
         await this.$store.dispatch('services/remove', this.selected);
-        this.$snackBar.show(this.$tc('service.deleteSuccess', this.selected.length));
+        this.$snackBar.success(this.$tc('service.deleteSuccess', this.selected.length));
         this.loadServices();
       },
       onSelect(service) {

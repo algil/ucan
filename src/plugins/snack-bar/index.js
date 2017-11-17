@@ -9,6 +9,22 @@ const SnackBarPlugin = {
     this.instance = new Vue();
 
     Vue.prototype.$snackBar = {
+      success(text, options = {}) {
+        options.color = 'success';
+        this.show(text, options);
+      },
+      info(text, options = {}) {
+        options.color = 'info';
+        this.show(text, options);
+      },
+      warning(text, options = {}) {
+        options.color = 'warning';
+        this.show(text, options);
+      },
+      error(text, options = {}) {
+        options.color = 'error';
+        this.show(text, options);
+      },
       show(text, options) {
         SnackBarPlugin.instance.$events.emit('show-snack-bar', text, options);
       },
