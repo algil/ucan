@@ -2,14 +2,14 @@ import { db } from './firebase';
 
 const servicesRef = db.collection('services');
 
-export async function get(serviceId) {
+export async function get (serviceId) {
   const doc = await servicesRef.doc(serviceId).get();
   const service = doc.data();
   service.id = doc.id;
   return service;
 }
 
-export async function getAll() {
+export async function getAll () {
   const services = [];
   const querySnapshot = await servicesRef.get();
   querySnapshot.forEach((doc) => {
@@ -20,7 +20,7 @@ export async function getAll() {
   return services;
 }
 
-export async function save(service) {
+export async function save (service) {
   try {
     if (service.id) {
       await servicesRef.doc(service.id).update({
@@ -36,6 +36,6 @@ export async function save(service) {
   }
 }
 
-export async function remove(serviceId) {
+export async function remove (serviceId) {
   await servicesRef.doc(serviceId).delete();
 }

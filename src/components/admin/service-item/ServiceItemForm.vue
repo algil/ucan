@@ -32,22 +32,31 @@
 </template>
 
 <script>
-  import * as EventTypes from '../../../event-types';
+  import * as EventTypes from '@/event-types';
 
   export default {
     name: 'service-item-form',
-    props: ['service'],
-    mounted() {
+
+    props: {
+      service: {
+        required: true,
+        type: Object
+      }
+    },
+
+    mounted () {
       this.$events.on(EventTypes.VALIDATE, this.onValidate);
     },
-    beforeDestroy() {
+
+    beforeDestroy () {
       this.$events.off(EventTypes.VALIDATE, this.onValidate);
     },
+
     methods: {
-      onValidate() {
+      onValidate () {
         this.$validator.validateAll();
         this.$events.emit(EventTypes.ERROR_CHANGES, this.errors.items);
       }
     }
-  }
+  };
 </script>

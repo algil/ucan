@@ -1,28 +1,34 @@
 <template>
-  <v-navigation-drawer absolute v-model="isActive" app>
+  <v-navigation-drawer
+    absolute
+    app
+    v-model="isActive">
     <div class="text-xs-center pa-3">
       <div class="display-2 py-2">{{ $t('app.name') }}</div>
       <p>{{ $t('app.description') }}</p>
     </div>
+
     <v-divider></v-divider>
     <app-menu></app-menu>
   </v-navigation-drawer>
 </template>
 
 <script>
-  import AppMenu from './AppMenu.vue';
+  import AppMenu from './AppMenu';
 
   export default {
     name: 'app-sidebar',
+
     components: {
       AppMenu
     },
+
     computed: {
       isActive: {
-        get() {
+        get () {
           return this.$store.state.sidebar;
         },
-        set(value) {
+        set (value) {
           this.$store.commit('sidebar', value);
         }
       }

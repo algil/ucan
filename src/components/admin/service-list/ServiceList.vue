@@ -1,8 +1,16 @@
 <template>
   <div>
-    <v-card v-if="!isMobile" class="card--flex-toolbar">
-      <v-toolbar card color="white" prominent>
-        <v-toolbar-title class="body-2 grey--text">{{$store.state.title}}</v-toolbar-title>
+    <!-- DESKTOP -->
+    <v-card
+      v-if="!isMobile"
+      class="card--flex-toolbar">
+      <v-toolbar
+        card
+        color="white"
+        prominent>
+        <v-toolbar-title class="body-2 grey--text">
+          {{$store.state.title}}
+        </v-toolbar-title>
         <v-spacer></v-spacer>
         <service-list-actions></service-list-actions>
       </v-toolbar>
@@ -44,18 +52,29 @@
           @click="add()">
           <v-icon>add</v-icon>
         </v-btn>
-        <v-tooltip left :activator="fabButton" v-model="fabTooltip">
+
+        <v-tooltip
+          left
+          :activator="fabButton"
+          v-model="fabTooltip">
           <span>{{ $t('label.new') }}</span>
         </v-tooltip>
       </v-card-text>
     </v-card>
 
-    <v-list two-line v-else-if="isMobile">
+    <!-- MOBILE -->
+    <v-list
+      v-else-if="isMobile"
+      two-line>
       <template v-for="(service, index) in services">
         <v-list-tile avatar>
           <v-list-tile-action>
-            <v-checkbox v-model="service.selected" @change="onSelect(service)"></v-checkbox>
+            <v-checkbox
+              v-model="service.selected"
+              @change="onSelect(service)">
+            </v-checkbox>
           </v-list-tile-action>
+
           <v-list-tile-content>
             <v-list-tile-title>{{service.name}}</v-list-tile-title>
             <v-list-tile-sub-title>{{service.cost}} €</v-list-tile-sub-title>
@@ -81,13 +100,15 @@
 </template>
 
 <script>
-  import ServiceListActions from './ServiceListActions.vue';
-  import * as EventTypes from '../../../event-types';
+  import * as EventTypes from '@/event-types';
+  import ServiceListActions from './ServiceListActions';
 
   export default {
     name: 'service-list',
+
     components: {ServiceListActions},
-    data() {
+
+    data () {
       return {
         services: [],
         selected: [],
@@ -105,34 +126,37 @@
         }
       };
     },
-    mounted() {
+
+    mounted () {
       this.$events.on(EventTypes.SERVICE_LIST_ON_EDIT, this.edit);
       this.$events.on(EventTypes.SERVICE_LIST_DELETE, this.remove);
       this.fabButton = this.$refs.fab ? this.$refs.fab.$el : null;
       this.$store.commit('title', this.$t('service.titleList'));
       this.loadServices();
     },
-    beforeDestroy() {
+
+    beforeDestroy () {
       this.$events.off(EventTypes.SERVICE_LIST_ON_EDIT, this.edit);
       this.$events.off(EventTypes.SERVICE_LIST_DELETE, this.remove);
     },
+
     methods: {
-      async loadServices() {
+      async loadServices () {
         this.selected = [];
         this.services = await this.$store.dispatch('services/getAll');
       },
-      add() {
+      add () {
         this.$router.push({name: 'service-item', params: {id: 'new'}});
       },
-      edit() {
+      edit () {
         this.$router.push({name: 'service-item', params: {id: this.selected[0].id}});
       },
-      async remove() {
+      async remove () {
         await this.$store.dispatch('services/remove', this.selected);
         this.$snackBar.success(this.$tc('service.deleteSuccess', this.selected.length));
         this.loadServices();
       },
-      onSelect(service) {
+      onSelect (service) {
         if (service.selected) {
           this.selected.push(service);
         } else {
@@ -140,6 +164,7 @@
         }
       }
     },
+
     watch: {
       selected: function (value) {
         this.$events.emit(EventTypes.SERVICE_LIST_ON_SELECT, value);

@@ -6,13 +6,21 @@
     :vertical="options.mode === 'vertical'"
     v-model="showSnackBar">
     {{ text }}
-    <v-btn v-if="options.buttonText" dark flat color="primary" @click.native="handler(options.buttonAction)">{{options.buttonText}}</v-btn>
+
+    <v-btn
+      v-if="options.buttonText"
+      dark
+      flat
+      color="primary"
+      @click.native="handler(options.buttonAction)">
+      {{options.buttonText}}
+    </v-btn>
   </v-snackbar>
 </template>
 
 <script>
   export default {
-    data() {
+    data () {
       return {
         showSnackBar: false,
         text: '',
@@ -24,31 +32,34 @@
           color: null,
           mode: 'multi-line'
         }
-      }
+      };
     },
-    mounted() {
+
+    mounted () {
       this.$events.on('show-snack-bar', this.show);
       this.$events.on('hide-snack-bar', this.hide);
     },
-    beforeDestroy() {
+
+    beforeDestroy () {
       this.$events.off('show-snack-bar', this.show);
       this.$events.off('hide-snack-bar', this.hide);
     },
+
     methods: {
-      show(text, options) {
+      show (text, options) {
         this.text = text;
         this.options = Object.assign({}, this.defaultOptions, options);
         this.showSnackBar = true;
       },
-      hide() {
+      hide () {
         this.showSnackBar = false;
       },
-      handler() {
+      handler () {
         if (this.options.buttonAction) {
           this.options.buttonAction();
         }
         this.hide();
       }
     }
-  }
+  };
 </script>

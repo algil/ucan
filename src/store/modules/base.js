@@ -1,4 +1,3 @@
-
-export function setLoading(commit, loading) {
+export function setLoading (commit, loading) {
   commit('setLoading', loading, {root: true});
 }

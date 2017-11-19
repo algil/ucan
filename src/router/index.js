@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import HomeView from '../components/HomeView.vue';
-import MainContainer from '../components/MainContainer.vue';
-import AdminContainer from '../components/admin/AdminContainer.vue';
-import ServiceList from '../components/admin/service-list/ServiceList.vue';
-import ServiceItem from '../components/admin/service-item/ServiceItem.vue';
+import HomeView from '@/components/HomeView';
+import MainContainer from '@/components/MainContainer';
+import AdminContainer from '@/components/admin/AdminContainer';
+import ServiceList from '@/components/admin/service-list/ServiceList';
+import ServiceItem from '@/components/admin/service-item/ServiceItem';
 
 Vue.use(Router);
 

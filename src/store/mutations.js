@@ -1,20 +1,20 @@
 export default {
-  showBack(state, payload) {
+  showBack (state, payload) {
     state.showBack = payload;
   },
-  sidebar(state, payload) {
+  sidebar (state, payload) {
     state.sidebar = payload;
   },
-  title(state, payload) {
+  title (state, payload) {
     state.title = payload;
   },
-  setLoading(state, payload) {
+  setLoading (state, payload) {
     state.loading = payload;
   },
-  setNotification(state, payload) {
+  setNotification (state, payload) {
     state.notification = payload;
   },
-  clearNotification(state) {
+  clearNotification (state) {
     state.notification = null;
   }
 };

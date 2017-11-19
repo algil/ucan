@@ -1,7 +1,7 @@
 import DialogComponent from './Dialog.vue';
 
 const DialogPlugin = {
-  install(Vue, options) {
+  install (Vue, options) {
     if (this.installed) {
       return;
     }
@@ -9,10 +9,11 @@ const DialogPlugin = {
     this.instance = new Vue();
 
     Vue.prototype.$dialog = {
-      show(params) {
+      show (params) {
         DialogPlugin.instance.$events.emit('show-dialog', params);
       },
-      hide() {
+      
+      hide () {
         DialogPlugin.instance.$events.emit('hide-dialog');
       }
     };

@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 Vue.mixin({
   computed: {
-    '_': function() {
+    '_': function () {
       return _;
     }
   }

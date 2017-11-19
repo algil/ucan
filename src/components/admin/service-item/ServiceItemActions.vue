@@ -2,7 +2,10 @@
   <div>
     <!-- SAVE -->
     <v-tooltip bottom>
-      <v-btn icon slot="activator" @click="onSave()">
+      <v-btn
+        icon
+        slot="activator"
+        @click="onSave()">
         <v-icon>check</v-icon>
       </v-btn>
       <span>{{ $t('label.save') }}</span>
@@ -11,14 +14,14 @@
 </template>
 
 <script>
-  import * as EventTypes from '../../../event-types';
+  import * as EventTypes from '@/event-types';
 
   export default {
     name: 'service-item-actions',
     methods: {
-      onSave() {
+      onSave () {
         this.$events.emit(EventTypes.SERVICE_ON_SAVE);
       }
     }
-  }
+  };
 </script>

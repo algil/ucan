@@ -1,7 +1,19 @@
 <template>
-  <v-toolbar dark app :extended="$vuetify.breakpoint.smAndUp" color="primary">
-    <v-toolbar-side-icon v-if="!$store.state.showBack" @click.stop="toggleSidebar"></v-toolbar-side-icon>
-    <v-btn icon v-if="isMobile && $store.state.showBack" @click.stop="onGoBack"><v-icon>arrow_back</v-icon></v-btn>
+  <v-toolbar
+    dark
+    app
+    :extended="$vuetify.breakpoint.smAndUp"
+    color="primary">
+    <v-toolbar-side-icon
+      v-if="!$store.state.showBack"
+      @click.stop="toggleSidebar">
+    </v-toolbar-side-icon>
+    <v-btn
+      icon
+      v-if="isMobile && $store.state.showBack"
+      @click.stop="onGoBack">
+      <v-icon>arrow_back</v-icon>
+    </v-btn>
     <v-toolbar-title v-if="isMobile">{{$store.state.title}}</v-toolbar-title>
 
     <v-spacer></v-spacer>
@@ -12,24 +24,26 @@
 </template>
 
 <script>
-  import * as EventTypes from '../../event-types';
-  import ServiceListActions from '../admin/service-list/ServiceListActions.vue';
-  import ServiceItemActions from '../admin/service-item/ServiceItemActions.vue';
+  import * as EventTypes from '@/event-types';
+  import ServiceListActions from '@/components/admin/service-list/ServiceListActions';
+  import ServiceItemActions from '@/components/admin/service-item/ServiceItemActions';
 
   export default {
     name: 'app-header',
+
     components: {
       ServiceListActions,
       ServiceItemActions
     },
+
     methods: {
-      toggleSidebar() {
+      toggleSidebar () {
         this.$store.commit('sidebar', !this.$store.state.sidebar);
       },
-      onGoBack() {
+      onGoBack () {
         this.$events.emit(EventTypes.GO_BACK);
       },
-      isCurrentRoute(routeName) {
+      isCurrentRoute (routeName) {
         return this.$route.name === routeName;
       }
     }

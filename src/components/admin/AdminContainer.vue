@@ -5,9 +5,10 @@
 <script>
   export default {
     name: 'admin-container',
-    created() {
+
+    created () {
       this.$vuetify.theme.primary = '#fea129';
       this.$vuetify.theme.accent = '#ffd74f';
     }
-  }
+  };
 </script>
