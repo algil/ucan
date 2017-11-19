@@ -9,3 +9,9 @@ export const SERVICE_LIST_DELETE = 'ServiceListOnDelete';
 
 export const SERVICE_ON_SAVE = 'ServiceOnSave';
 
+export const CENTER_LIST_ON_SELECT = 'CenterListOnSelect';
+export const CENTER_LIST_ON_EDIT = 'CenterListOnEdit';
+export const CENTER_LIST_DELETE = 'CenterListOnDelete';
+
+export const CENTER_ON_SAVE = 'CenterOnSave';
+

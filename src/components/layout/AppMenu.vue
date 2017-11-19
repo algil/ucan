@@ -80,8 +80,7 @@
             action: 'settings',
             group: 'admin',
             items: [
-              {title: this.$t('menu.centers'), action: 'home', href: '/admin/centers'},
-              {title: this.$t('menu.centerNew'), action: 'home', href: '/admin/centers/new'},
+              {title: this.$t('menu.centers'), action: 'home', href: {name: 'CenterList'}},
               {title: this.$t('menu.services'), action: 'service', href: '/admin/services'}
             ]
           }

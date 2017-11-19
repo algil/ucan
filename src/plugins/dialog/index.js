@@ -12,7 +12,7 @@ const DialogPlugin = {
       show (params) {
         DialogPlugin.instance.$events.emit('show-dialog', params);
       },
-      
+
       hide () {
         DialogPlugin.instance.$events.emit('hide-dialog');
       }

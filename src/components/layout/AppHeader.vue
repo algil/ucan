@@ -18,22 +18,25 @@
 
     <v-spacer></v-spacer>
 
-    <service-list-actions key="one" v-if="isMobile && isCurrentRoute('service-list')"></service-list-actions>
-    <service-item-actions key="two" v-else-if="isMobile && isCurrentRoute('service-item')"></service-item-actions>
+    <service-list-actions key="one" v-if="isMobile && isCurrentRoute('ServiceList')"></service-list-actions>
+    <service-item-actions key="two" v-else-if="isMobile && isCurrentRoute('ServiceItem')"></service-item-actions>
+    <center-list-actions key="two" v-else-if="isMobile && isCurrentRoute('CenterItem')"></center-list-actions>
   </v-toolbar>
 </template>
 
 <script>
   import * as EventTypes from '@/event-types';
-  import ServiceListActions from '@/components/admin/service-list/ServiceListActions';
-  import ServiceItemActions from '@/components/admin/service-item/ServiceItemActions';
+  import ServiceListActions from '@/components/admin/service/ServiceListActions';
+  import ServiceItemActions from '@/components/admin/service/ServiceItemActions';
+  import CenterListActions from '@/components/admin/center/CenterListActions';
 
   export default {
     name: 'app-header',
 
     components: {
       ServiceListActions,
-      ServiceItemActions
+      ServiceItemActions,
+      CenterListActions
     },
 
     methods: {

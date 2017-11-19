@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div>
     <!-- SAVE -->
     <v-tooltip bottom>
@@ -17,10 +17,11 @@
   import * as EventTypes from '@/event-types';
 
   export default {
-    name: 'service-item-actions',
+    name: 'center-item-actions',
+
     methods: {
       onSave () {
-        this.$events.emit(EventTypes.SERVICE_ON_SAVE);
+        this.$events.emit(EventTypes.CENTER_ON_SAVE);
       }
     }
   };

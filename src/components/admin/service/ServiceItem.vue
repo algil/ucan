@@ -108,7 +108,7 @@
         }
       },
       navigateToServiceList () {
-        this.$router.push({name: 'service-list'});
+        this.$router.push({name: 'ServiceList'});
       },
       refreshErrors (errors) {
         this.errors.clear();

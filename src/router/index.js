@@ -3,8 +3,10 @@ import Router from 'vue-router';
 import HomeView from '@/components/HomeView';
 import MainContainer from '@/components/MainContainer';
 import AdminContainer from '@/components/admin/AdminContainer';
-import ServiceList from '@/components/admin/service-list/ServiceList';
-import ServiceItem from '@/components/admin/service-item/ServiceItem';
+import ServiceList from '@/components/admin/service/ServiceList';
+import ServiceItem from '@/components/admin/service/ServiceItem';
+import CenterList from '@/components/admin/center/CenterList';
+import CenterItem from '@/components/admin/center/CenterItem';
 
 Vue.use(Router);
 
@@ -21,8 +23,10 @@ export default new Router({
       path: '/admin',
       component: AdminContainer,
       children: [
-        {path: 'services', name: 'service-list', component: ServiceList},
-        {path: 'services/:id', name: 'service-item', component: ServiceItem, props: true}
+        {path: 'services', name: 'ServiceList', component: ServiceList},
+        {path: 'services/:id', name: 'ServiceItem', component: ServiceItem, props: true},
+        {path: 'centers', name: 'CenterList', component: CenterList},
+        {path: 'centers/:id', name: 'CenterItem', component: CenterItem, props: true}
       ]
     }
   ],

@@ -2,40 +2,34 @@ import { db } from './firebase';
 
 const servicesRef = db.collection('services');
 
-export async function get (serviceId) {
-  const doc = await servicesRef.doc(serviceId).get();
-  const service = doc.data();
-  service.id = doc.id;
-  return service;
+export async function get (id) {
+  const doc = await servicesRef.doc(id).get();
+  return doc.data();
 }
 
 export async function getAll () {
   const services = [];
   const querySnapshot = await servicesRef.get();
   querySnapshot.forEach((doc) => {
-    let service = doc.data();
-    service.id = doc.id;
-    services.push(service);
+    services.push(doc.data());
   });
   return services;
 }
 
 export async function save (service) {
   try {
-    if (service.id) {
-      await servicesRef.doc(service.id).update({
-        name: service.name,
-        cost: service.cost,
-        active: service.active
-      });
-    } else {
-      await servicesRef.add(service);
-    }
-  } catch (e) {
-    console.error(e);
+    let serviceDoc = service.id ? servicesRef.doc(service.id) : servicesRef.doc();
+    service.id = serviceDoc.id;
+    await serviceDoc.set(service);
+  } catch (error) {
+    console.error(error);
   }
 }
 
-export async function remove (serviceId) {
-  await servicesRef.doc(serviceId).delete();
+export async function remove (id) {
+  try {
+    await servicesRef.doc(id).delete();
+  } catch (error) {
+    console.error(error);
+  }
 }

@@ -32,7 +32,7 @@
   import * as EventTypes from '@/event-types';
 
   export default {
-    name: 'service-list-actions',
+    name: 'center-list-actions',
 
     data () {
       return {
@@ -41,27 +41,27 @@
     },
 
     computed: {
-      serviceLabel () {
+      centerLabel () {
         return this.selected.length === 1 ? this.selected[0].name : this.selected.length;
       }
     },
 
     mounted () {
-      this.$events.on(EventTypes.SERVICE_LIST_ON_SELECT, this.onSelectionChange);
+      this.$events.on(EventTypes.CENTER_LIST_ON_SELECT, this.onSelectionChange);
     },
 
     beforeDestroy () {
-      this.$events.off(EventTypes.SERVICE_LIST_ON_SELECT, this.onSelectionChange);
+      this.$events.off(EventTypes.CENTER_LIST_ON_SELECT, this.onSelectionChange);
     },
 
     methods: {
       onEdit () {
-        this.$events.emit(EventTypes.SERVICE_LIST_ON_EDIT);
+        this.$events.emit(EventTypes.CENTER_LIST_ON_EDIT);
       },
       showDeleteConfirmation () {
         this.$dialog.show({
-          title: this.$tc('service.deleteDialog.title', this.selected.length, {value: this.serviceLabel}),
-          message: this.$tc('service.deleteDialog.message', this.selected.length, {name: this.selected.length}),
+          title: this.$tc('center.deleteDialog.title', this.selected.length, {value: this.centerLabel}),
+          message: this.$tc('center.deleteDialog.message', this.selected.length, {name: this.selected.length}),
           buttons: [
             {title: this.$t('label.delete'), action: this.onRemove},
             {title: this.$t('label.cancel')}
@@ -69,7 +69,7 @@
         });
       },
       onRemove () {
-        this.$events.emit(EventTypes.SERVICE_LIST_DELETE);
+        this.$events.emit(EventTypes.CENTER_LIST_DELETE);
       },
       onSelectionChange (selected) {
         this.selected = selected;

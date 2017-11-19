@@ -35,5 +35,16 @@ export default {
       title: 'Eiiminar servicio \'{value}\' | Eliminar {value} servicios',
       message: '¿Estás seguro que quieres eliminar el servicio seleccionado? Esta acción no puede deshacerse. | ¿Estás seguro que quieres eliminar los servicios seleccionados? Esta acción no puede deshacerse.'
     }
+  },
+  center: {
+    titleList: 'Centros',
+    titleNew: 'Nuevo centro',
+    noData: 'No hay centros. Puedes anañir uno nuevo con el botón \'New\'',
+    deleteSuccess: 'Centro eliminado | Centros eliminados',
+    saveSuccess: 'Centro guardado',
+    deleteDialog: {
+      title: 'Eiiminar centro \'{value}\' | Eliminar {value} centros',
+      message: '¿Estás seguro que quieres eliminar el centro seleccionado? Esta acción no puede deshacerse. | ¿Estás seguro que quieres eliminar los centros seleccionados? Esta acción no puede deshacerse.'
+    }
   }
 }

@@ -104,7 +104,7 @@
   import ServiceListActions from './ServiceListActions';
 
   export default {
-    name: 'service-list',
+    name: 'service',
 
     components: {ServiceListActions},
 
@@ -146,10 +146,10 @@
         this.services = await this.$store.dispatch('services/getAll');
       },
       add () {
-        this.$router.push({name: 'service-item', params: {id: 'new'}});
+        this.$router.push({name: 'ServiceItem', params: {id: 'new'}});
       },
       edit () {
-        this.$router.push({name: 'service-item', params: {id: this.selected[0].id}});
+        this.$router.push({name: 'ServiceItem', params: {id: this.selected[0].id}});
       },
       async remove () {
         await this.$store.dispatch('services/remove', this.selected);
