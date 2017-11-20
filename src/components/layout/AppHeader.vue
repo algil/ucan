@@ -20,9 +20,12 @@
 
     <service-list-actions key="one" v-if="isMobile && isCurrentRoute('ServiceList')"></service-list-actions>
     <service-item-actions key="two" v-else-if="isMobile && isCurrentRoute('ServiceItem')"></service-item-actions>
-    <center-list-actions key="two" v-else-if="isMobile && isCurrentRoute('CenterItem')"></center-list-actions>
+    <center-list-actions key="two" v-else-if="isMobile && isCurrentRoute('CenterList')"></center-list-actions>
+    <center-item-actions key="two" v-else-if="isMobile && isCurrentRoute('CenterItem')"></center-item-actions>
     <question-category-list-actions key="two" v-else-if="isMobile && isCurrentRoute('QuestionCategoryList')"></question-category-list-actions>
     <question-category-item-actions key="two" v-else-if="isMobile && isCurrentRoute('QuestionCategoryItem')"></question-category-item-actions>
+    <question-list-actions key="two" v-else-if="isMobile && isCurrentRoute('QuestionList')"></question-list-actions>
+    <question-item-actions key="two" v-else-if="isMobile && isCurrentRoute('QuestionItem')"></question-item-actions>
   </v-toolbar>
 </template>
 
@@ -31,8 +34,11 @@
   import ServiceListActions from '@/components/admin/service/ServiceListActions';
   import ServiceItemActions from '@/components/admin/service/ServiceItemActions';
   import CenterListActions from '@/components/admin/center/CenterListActions';
+  import CenterItemActions from '@/components/admin/center/CenterItemActions';
   import QuestionCategoryListActions from '@/components/admin/question-category/QuestionCategoryListActions';
   import QuestionCategoryItemActions from '@/components/admin/question-category/QuestionCategoryItemActions';
+  import QuestionListActions from '@/components/admin/question/QuestionListActions';
+  import QuestionItemActions from '@/components/admin/question/QuestionItemActions';
 
   export default {
     name: 'app-header',
@@ -41,8 +47,11 @@
       ServiceListActions,
       ServiceItemActions,
       CenterListActions,
+      CenterItemActions,
       QuestionCategoryListActions,
-      QuestionCategoryItemActions
+      QuestionCategoryItemActions,
+      QuestionListActions,
+      QuestionItemActions
     },
 
     methods: {

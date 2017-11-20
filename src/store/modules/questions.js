@@ -1,11 +1,11 @@
-import * as questionCategoryApi from '@/api/question-category.api';
+import * as questionApi from '@/api/question.api';
 import { setLoading } from './base';
 
 const actions = {
   async get ({commit}, id) {
     try {
       setLoading(commit, true);
-      return await questionCategoryApi.get(id);
+      return await questionApi.get(id);
     } catch (error) {
       console.error(error);
     } finally {
@@ -16,7 +16,7 @@ const actions = {
   async getAll ({commit}) {
     try {
       setLoading(commit, true);
-      return await questionCategoryApi.getAll();
+      return await questionApi.getAll();
     } catch (error) {
       console.error(error);
     } finally {
@@ -24,10 +24,10 @@ const actions = {
     }
   },
 
-  async save ({commit}, questionCategory) {
+  async save ({commit}, question) {
     try {
       setLoading(commit, true);
-      return await questionCategoryApi.save(questionCategory);
+      return await questionApi.save(question);
     } catch (error) {
       console.error(error);
     } finally {
@@ -35,10 +35,10 @@ const actions = {
     }
   },
 
-  async remove ({commit}, questionCategories) {
+  async remove ({commit}, questions) {
     try {
       setLoading(commit, true);
-      let promises = questionCategories.map((questionCategory) => questionCategoryApi.remove(questionCategory.id));
+      let promises = questions.map((question) => questionApi.remove(question.id));
       return await Promise.all(promises);
     } catch (error) {
       console.error(error);

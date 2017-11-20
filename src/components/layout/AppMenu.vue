@@ -80,9 +80,10 @@
             icon: 'settings',
             group: 'admin',
             items: [
-              {title: this.$t('menu.centers'), icon: 'home', href: {name: 'CenterList'}},
-              {title: this.$t('menu.services'), icon: 'service', href: {name: 'ServiceList'}},
-              {title: this.$t('menu.questionCategories'), icon: 'question', href: {name: 'QuestionCategoryList'}}
+              {title: this.$t('menu.centers'), href: {name: 'CenterList'}},
+              {title: this.$t('menu.services'), href: {name: 'ServiceList'}},
+              {title: this.$t('menu.questionCategories'), href: {name: 'QuestionCategoryList'}},
+              {title: this.$t('menu.questions'), href: {name: 'QuestionList'}}
             ]
           }
         ]
