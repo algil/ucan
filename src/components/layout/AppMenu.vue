@@ -8,7 +8,7 @@
         <!-- Group header -->
         <v-list-tile slot="item">
           <v-list-tile-action>
-            <v-icon>{{item.action}}</v-icon>
+            <v-icon>{{item.icon}}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>{{item.title}}</v-list-tile-title>
@@ -37,10 +37,10 @@
         key="menu-items"
         class="mt-3 grey--text text--darken-1">
         <v-icon
-          v-if="item.action"
+          v-if="item.icon"
           color="grey darken-1"
           class="mr-2">
-          {{item.action}}
+          {{item.icon}}
         </v-icon>
         <span>{{item.header}}</span>
       </v-subheader>
@@ -54,7 +54,7 @@
         :to="item.href"
         exact>
         <v-list-tile-action>
-          <v-icon>{{item.action}}</v-icon>
+          <v-icon>{{item.icon}}</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title>{{item.title}}</v-list-tile-title>
@@ -71,17 +71,18 @@
     data () {
       return {
         items: [
-          {title: this.$t('menu.home'), action: 'home', href: '/'},
-          {title: this.$t('menu.clientNew'), action: 'person_add', href: '/client/new'},
-          {title: this.$t('menu.petNew'), action: 'person_add', href: '/pet/new'},
+          {title: this.$t('menu.home'), icon: 'home', href: '/'},
+          {title: this.$t('menu.clientNew'), icon: 'person_add', href: '/client/new'},
+          {title: this.$t('menu.petNew'), icon: 'person_add', href: '/pet/new'},
           {divider: true},
           {
             title: this.$t('menu.administration'),
-            action: 'settings',
+            icon: 'settings',
             group: 'admin',
             items: [
-              {title: this.$t('menu.centers'), action: 'home', href: {name: 'CenterList'}},
-              {title: this.$t('menu.services'), action: 'service', href: '/admin/services'}
+              {title: this.$t('menu.centers'), icon: 'home', href: {name: 'CenterList'}},
+              {title: this.$t('menu.services'), icon: 'service', href: {name: 'ServiceList'}},
+              {title: this.$t('menu.questionCategories'), icon: 'question', href: {name: 'QuestionCategoryList'}}
             ]
           }
         ]

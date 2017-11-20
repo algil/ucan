@@ -8,6 +8,7 @@ import actions from './actions';
 import mutations from './mutations';
 import services from './modules/services';
 import centers from './modules/centers';
+import questionCategories from './modules/question-categories';
 
 Vue.use(Vuex);
 
@@ -24,6 +25,7 @@ export default new Vuex.Store({
   mutations,
   modules: {
     services,
-    centers
+    centers,
+    questionCategories
   }
 });

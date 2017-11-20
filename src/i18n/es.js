@@ -10,7 +10,8 @@ export default {
     administration: 'Administración',
     centers: 'Centros',
     centerNew: 'Nuevo centro',
-    services: 'Servicios'
+    services: 'Servicios',
+    questionCategories: 'Categorías de preguntas'
   },
   label: {
     active: 'Activo',
@@ -45,6 +46,17 @@ export default {
     deleteDialog: {
       title: 'Eiiminar centro \'{value}\' | Eliminar {value} centros',
       message: '¿Estás seguro que quieres eliminar el centro seleccionado? Esta acción no puede deshacerse. | ¿Estás seguro que quieres eliminar los centros seleccionados? Esta acción no puede deshacerse.'
+    }
+  },
+  questionCategory: {
+    titleList: 'Categorías de preguntas',
+    titleNew: 'Nuevo categoría',
+    noData: 'No hay categorías. Puedes anañir una nueva con el botón \'New\'',
+    deleteSuccess: 'Categoría eliminada | Categorías eliminadas',
+    saveSuccess: 'Categoría guardada',
+    deleteDialog: {
+      title: 'Eiiminar categoría \'{value}\' | Eliminar {value} categorías',
+      message: '¿Estás seguro que quieres eliminar la cateogría seleccionada? Esta acción no puede deshacerse. | ¿Estás seguro que quieres eliminar las categorías seleccionadas? Esta acción no puede deshacerse.'
     }
   }
 }
