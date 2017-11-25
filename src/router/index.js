@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import HomeView from '@/components/HomeView';
 import MainContainer from '@/components/MainContainer';
+import NotFound from '@/pages/PageNotFound';
 import AdminContainer from '@/components/admin/AdminContainer';
 import ServiceList from '@/components/admin/service/ServiceList';
 import ServiceItem from '@/components/admin/service/ServiceItem';
@@ -20,7 +21,7 @@ export default new Router({
       path: '/',
       component: MainContainer,
       children: [
-        {path: '/', name: 'home', component: HomeView}
+        {path: '/', name: 'Home', component: HomeView}
       ]
     },
     {
@@ -36,7 +37,8 @@ export default new Router({
         {path: 'questions', name: 'QuestionList', component: QuestionList},
         {path: 'questions/:id', name: 'QuestionItem', component: QuestionItem, props: true}
       ]
-    }
+    },
+    {path: '*', name: 'NotFound', component: NotFound}
   ],
   mode: 'history'
 });

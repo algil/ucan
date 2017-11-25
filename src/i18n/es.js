@@ -3,6 +3,13 @@ export default {
     name: 'Ucan',
     description: 'Cuidado y adiestramiento de mascotas'
   },
+  pages: {
+    notFound: {
+      title: 'Página no encontrada',
+      message: 'Ups, No podemos encontrar lo que estás buscando.',
+      action: 'Volver a inicio'
+    }
+  },
   menu: {
     home: 'Inicio',
     clientNew: 'Nuevo cliente',
