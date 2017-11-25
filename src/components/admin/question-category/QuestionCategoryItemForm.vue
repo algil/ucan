@@ -11,6 +11,15 @@
             v-validate="'required'"
             required>
           </v-text-field>
+          <v-text-field
+            :label="$t('label.order')"
+            type="number"
+            v-model="questionCategory.order"
+            data-vv-name="order"
+            :error-messages="errors.collect('order')"
+            v-validate="'required|min_value:1'"
+            required>
+          </v-text-field>
           <v-checkbox
             :label="$t('label.active')"
             v-model="questionCategory.active">
