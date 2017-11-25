@@ -22,4 +22,3 @@ export const QUESTION_LIST_ON_SELECT = 'QuestionListOnSelect';
 export const QUESTION_LIST_ON_EDIT = 'QuestionListOnEdit';
 export const QUESTION_LIST_DELETE = 'QuestionListOnDelete';
 export const QUESTION_ON_SAVE = 'QuestionOnSave';
-

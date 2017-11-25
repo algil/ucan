@@ -13,4 +13,3 @@ const i18n = new VueI18n({
 });
 
 export default i18n;
-
