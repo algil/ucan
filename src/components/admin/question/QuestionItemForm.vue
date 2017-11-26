@@ -11,6 +11,16 @@
             v-validate="'required'"
             required>
           </v-text-field>
+          <v-select
+            :items="categories"
+            v-model="question.category"
+            :label="$t('label.category')"
+            item-text="name"
+            item-value="id"
+            data-vv-name="category"
+            :error-messages="errors.collect('category')"
+            v-validate="'required'"
+          ></v-select>
           <v-text-field
             :label="$t('label.order')"
             type="number"
@@ -43,8 +53,15 @@
       }
     },
 
+    data () {
+      return {
+        categories: []
+      };
+    },
+
     mounted () {
       this.$events.on(EventTypes.VALIDATE, this.onValidate);
+      this.loadCategories();
     },
 
     beforeDestroy () {
@@ -52,6 +69,10 @@
     },
 
     methods: {
+      async loadCategories () {
+        let categories = await this.$store.dispatch('questionCategories/getAll');
+        this.categories = this._.sortBy(categories, (category) => category.order);
+      },
       onValidate () {
         this.$validator.validateAll();
         this.$events.emit(EventTypes.ERROR_CHANGES, this.errors.items);

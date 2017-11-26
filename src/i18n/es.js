@@ -25,6 +25,7 @@ export default {
     active: 'Activo',
     back: 'Atrás',
     cancel: 'Cancelar',
+    category: 'Cateogría',
     close: 'Cerrar',
     cost: 'Precio',
     delete: 'Eliminar',
