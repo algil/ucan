@@ -1,25 +1,25 @@
 <template>
   <v-list two-line>
-    <template v-for="(service, index) in services">
-      <service-list-mobile-item :service="service" @onSelect="onSelect"></service-list-mobile-item>
-      <v-divider v-show="index !== services.length - 1"></v-divider>
+    <template v-for="(center, index) in centers">
+      <center-list-mobile-item :center="center" @onSelect="onSelect"></center-list-mobile-item>
+      <v-divider v-show="index !== centers.length - 1"></v-divider>
     </template>
   </v-list>
 </template>
 
 <script>
   import * as EventTypes from '@/event-types';
-  import ServiceListMobileItem from './ServiceListMobileItem';
+  import CenterListMobileItem from './CenterListMobileItem';
 
   export default {
-    name: 'service-list-mobile',
+    name: 'center-list-mobile',
 
     components: {
-      ServiceListMobileItem
+      CenterListMobileItem
     },
 
     props: {
-      services: {
+      centers: {
         required: true,
         type: Array
       }
@@ -42,18 +42,18 @@
     },
 
     methods: {
-      onSelect (service) {
-        if (service.selected) {
-          this.selected.push(service);
+      onSelect (center) {
+        if (center.selected) {
+          this.selected.push(center);
         } else {
-          this.selected = this.selected.filter(s => s.id !== service.id);
+          this.selected = this.selected.filter(s => s.id !== center.id);
         }
         this.$emit('onSelect', this.selected);
       },
 
       clearSelection () {
         this.selected = [];
-        this.services.map((service) => { service.selected = false });
+        this.centers.map((center) => { center.selected = false });
         this.$emit('onSelect', this.selected);
       }
     }

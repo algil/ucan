@@ -1,16 +1,16 @@
 <template>
   <div>
-    <service-list-desktop
+    <question-list-desktop
       v-if="!isMobile"
-      :services="services"
+      :questions="questions"
       @onSelect="onSelect">
-    </service-list-desktop>
+    </question-list-desktop>
 
-    <service-list-mobile
+    <question-list-mobile
       v-if="isMobile"
-      :services="services"
+      :questions="questions"
       @onSelect="onSelect">
-    </service-list-mobile>
+    </question-list-mobile>
 
     <v-fab-transition>
       <v-btn
@@ -39,20 +39,20 @@
 
 <script>
   import * as EventTypes from '@/event-types';
-  import ServiceListDesktop from './ServiceListDesktop';
-  import ServiceListMobile from './ServiceListMobile';
+  import QuestionListDesktop from './QuestionListDesktop';
+  import QuestionListMobile from './QuestionListMobile';
 
   export default {
-    name: 'service-list',
+    name: 'question-list',
 
     components: {
-      ServiceListDesktop,
-      ServiceListMobile
+      QuestionListDesktop,
+      QuestionListMobile
     },
 
     data () {
       return {
-        services: [],
+        questions: [],
         selected: [],
         fabButton: null,
         fabTooltip: false
@@ -62,36 +62,36 @@
     mounted () {
       this.fabButton = this.$refs.fab ? this.$refs.fab.$el : null;
       this.$events.on(EventTypes.GO_BACK, this.clearSelection);
-      this.$events.on(EventTypes.SERVICE_LIST_ON_EDIT, this.edit);
-      this.$events.on(EventTypes.SERVICE_LIST_DELETE, this.remove);
-      this.$store.commit('title', this.$t('service.titleList'));
-      this.loadServices();
+      this.$events.on(EventTypes.QUESTION_LIST_ON_EDIT, this.edit);
+      this.$events.on(EventTypes.QUESTION_LIST_DELETE, this.remove);
+      this.$store.commit('title', this.$t('question.titleList'));
+      this.loadQuestions();
     },
 
     beforeDestroy () {
       this.$events.off(EventTypes.GO_BACK, this.clearSelection);
-      this.$events.off(EventTypes.SERVICE_LIST_ON_EDIT, this.edit);
-      this.$events.off(EventTypes.SERVICE_LIST_DELETE, this.remove);
+      this.$events.off(EventTypes.QUESTION_LIST_ON_EDIT, this.edit);
+      this.$events.off(EventTypes.QUESTION_LIST_DELETE, this.remove);
     },
 
     methods: {
-      async loadServices () {
+      async loadQuestions () {
         this.selected = [];
-        this.services = await this.$store.dispatch('services/getAll');
+        this.questions = await this.$store.dispatch('questions/getAll');
       },
 
       add () {
-        this.$router.push({name: 'ServiceItem', params: {id: 'new'}});
+        this.$router.push({name: 'QuestionItem', params: {id: 'new'}});
       },
 
       edit () {
-        this.$router.push({name: 'ServiceItem', params: {id: this.selected[0].id}});
+        this.$router.push({name: 'QuestionItem', params: {id: this.selected[0].id}});
       },
 
       async remove () {
-        await this.$store.dispatch('services/remove', this.selected);
-        this.$snackBar.success(this.$tc('service.deleteSuccess', this.selected.length));
-        this.loadServices();
+        await this.$store.dispatch('questions/remove', this.selected);
+        this.$snackBar.success(this.$tc('question.deleteSuccess', this.selected.length));
+        this.loadQuestions();
       },
 
       onSelect (selected) {
@@ -105,7 +105,7 @@
       changeSelection (selected) {
         this.selected = selected;
         this.$store.commit('showBack', this.selected.length > 0);
-        this.$events.emit(EventTypes.SERVICE_LIST_SELECTION_CHANGED, this.selected);
+        this.$events.emit(EventTypes.QUESTION_LIST_SELECTION_CHANGED, this.selected);
       }
     }
   };

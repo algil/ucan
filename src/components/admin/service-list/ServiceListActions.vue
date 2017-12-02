@@ -47,11 +47,11 @@
     },
 
     mounted () {
-      this.$events.on(EventTypes.SERVICE_LIST_ON_SELECT, this.onSelectionChange);
+      this.$events.on(EventTypes.SERVICE_LIST_SELECTION_CHANGED, this.onSelectionChange);
     },
 
     beforeDestroy () {
-      this.$events.off(EventTypes.SERVICE_LIST_ON_SELECT, this.onSelectionChange);
+      this.$events.off(EventTypes.SERVICE_LIST_SELECTION_CHANGED, this.onSelectionChange);
     },
 
     methods: {

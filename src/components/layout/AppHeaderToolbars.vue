@@ -12,11 +12,11 @@
 <script>
   import ServiceListActions from '@/components/admin/service-list/ServiceListActions';
   import ServiceItemActions from '@/components/admin/service/ServiceItemActions';
-  import CenterListActions from '@/components/admin/center/CenterListActions';
+  import CenterListActions from '@/components/admin/center-list/CenterListActions';
   import CenterItemActions from '@/components/admin/center/CenterItemActions';
-  import QuestionCategoryListActions from '@/components/admin/question-category/QuestionCategoryListActions';
+  import QuestionCategoryListActions from '@/components/admin/question-category-list/QuestionCategoryListActions';
   import QuestionCategoryItemActions from '@/components/admin/question-category/QuestionCategoryItemActions';
-  import QuestionListActions from '@/components/admin/question/QuestionListActions';
+  import QuestionListActions from '@/components/admin/question-list/QuestionListActions';
   import QuestionItemActions from '@/components/admin/question/QuestionItemActions';
 
   export default {

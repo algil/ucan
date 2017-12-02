@@ -1,25 +1,25 @@
 <template>
   <v-list two-line>
-    <template v-for="(service, index) in services">
-      <service-list-mobile-item :service="service" @onSelect="onSelect"></service-list-mobile-item>
-      <v-divider v-show="index !== services.length - 1"></v-divider>
+    <template v-for="(question, index) in questions">
+      <question-list-mobile-item :question="question" @onSelect="onSelect"></question-list-mobile-item>
+      <v-divider v-show="index !== questions.length - 1"></v-divider>
     </template>
   </v-list>
 </template>
 
 <script>
   import * as EventTypes from '@/event-types';
-  import ServiceListMobileItem from './ServiceListMobileItem';
+  import QuestionListMobileItem from './QuestionListMobileItem';
 
   export default {
-    name: 'service-list-mobile',
+    name: 'question-list-mobile',
 
     components: {
-      ServiceListMobileItem
+      QuestionListMobileItem
     },
 
     props: {
-      services: {
+      questions: {
         required: true,
         type: Array
       }
@@ -42,18 +42,18 @@
     },
 
     methods: {
-      onSelect (service) {
-        if (service.selected) {
-          this.selected.push(service);
+      onSelect (question) {
+        if (question.selected) {
+          this.selected.push(question);
         } else {
-          this.selected = this.selected.filter(s => s.id !== service.id);
+          this.selected = this.selected.filter(s => s.id !== question.id);
         }
         this.$emit('onSelect', this.selected);
       },
 
       clearSelection () {
         this.selected = [];
-        this.services.map((service) => { service.selected = false });
+        this.questions.map((question) => { question.selected = false });
         this.$emit('onSelect', this.selected);
       }
     }

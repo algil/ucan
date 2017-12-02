@@ -1,8 +1,9 @@
 <template>
   <v-toolbar
-    dark
     app
-    :extended="$vuetify.breakpoint.smAndUp"
+    fixed
+    clipped-left
+    dark
     color="primary">
 
     <v-toolbar-side-icon
@@ -12,16 +13,16 @@
 
     <v-btn
       icon
-      v-if="isMobile && $store.state.showBack"
+      v-if="$store.state.showBack"
       @click.stop="onGoBack">
       <v-icon>arrow_back</v-icon>
     </v-btn>
 
-    <v-toolbar-title v-if="isMobile">{{$store.state.title}}</v-toolbar-title>
+    <v-toolbar-title>{{$store.state.title}}</v-toolbar-title>
 
     <v-spacer></v-spacer>
 
-    <app-header-toolbars v-if="isMobile"></app-header-toolbars>
+    <app-header-toolbars></app-header-toolbars>
   </v-toolbar>
 </template>
 

@@ -7,11 +7,11 @@ import HomeView from '@/components/HomeView';
 import AdminContainer from '@/components/admin/AdminContainer';
 import ServiceList from '@/components/admin/service-list/ServiceList';
 import ServiceItem from '@/components/admin/service/ServiceItem';
-import CenterList from '@/components/admin/center/CenterList';
+import CenterList from '@/components/admin/center-list/CenterList';
 import CenterItem from '@/components/admin/center/CenterItem';
-import QuestionCategoryList from '@/components/admin/question-category/QuestionCategoryList';
+import QuestionCategoryList from '@/components/admin/question-category-list/QuestionCategoryList';
 import QuestionCategoryItem from '@/components/admin/question-category/QuestionCategoryItem';
-import QuestionList from '@/components/admin/question/QuestionList';
+import QuestionList from '@/components/admin/question-list/QuestionList';
 import QuestionItem from '@/components/admin/question/QuestionItem';
 
 Vue.use(Router);

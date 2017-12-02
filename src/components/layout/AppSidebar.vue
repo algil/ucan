@@ -1,7 +1,8 @@
 <template>
   <v-navigation-drawer
-    absolute
     app
+    absolute
+    :clipped="$vuetify.breakpoint.smAndUp"
     v-model="isActive">
     <div class="text-xs-center pa-3">
       <div class="display-2 py-2">{{ $t('app.name') }}</div>

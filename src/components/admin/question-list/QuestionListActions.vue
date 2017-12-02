@@ -32,7 +32,7 @@
   import * as EventTypes from '@/event-types';
 
   export default {
-    name: 'question-category-list-actions',
+    name: 'question-actions',
 
     data () {
       return {
@@ -41,27 +41,27 @@
     },
 
     computed: {
-      questionCategoryLabel () {
+      questionLabel () {
         return this.selected.length === 1 ? this.selected[0].name : this.selected.length;
       }
     },
 
     mounted () {
-      this.$events.on(EventTypes.QUESTION_CATEGORY_LIST_ON_SELECT, this.onSelectionChange);
+      this.$events.on(EventTypes.QUESTION_LIST_SELECTION_CHANGED, this.onSelectionChange);
     },
 
     beforeDestroy () {
-      this.$events.off(EventTypes.QUESTION_CATEGORY_LIST_ON_SELECT, this.onSelectionChange);
+      this.$events.off(EventTypes.QUESTION_LIST_SELECTION_CHANGED, this.onSelectionChange);
     },
 
     methods: {
       onEdit () {
-        this.$events.emit(EventTypes.QUESTION_CATEGORY_LIST_ON_EDIT);
+        this.$events.emit(EventTypes.QUESTION_LIST_ON_EDIT);
       },
       showDeleteConfirmation () {
         this.$dialog.show({
-          title: this.$tc('questionCategory.deleteDialog.title', this.selected.length, {value: this.questionCategoryLabel}),
-          message: this.$tc('questionCategory.deleteDialog.message', this.selected.length, {name: this.selected.length}),
+          title: this.$tc('question.deleteDialog.title', this.selected.length, {value: this.questionLabel}),
+          message: this.$tc('question.deleteDialog.message', this.selected.length, {name: this.selected.length}),
           buttons: [
             {title: this.$t('label.delete'), action: this.onRemove},
             {title: this.$t('label.cancel')}
@@ -69,7 +69,7 @@
         });
       },
       onRemove () {
-        this.$events.emit(EventTypes.QUESTION_CATEGORY_LIST_DELETE);
+        this.$events.emit(EventTypes.QUESTION_LIST_DELETE);
       },
       onSelectionChange (selected) {
         this.selected = selected;

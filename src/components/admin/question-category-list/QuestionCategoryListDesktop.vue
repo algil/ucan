@@ -2,19 +2,18 @@
   <v-card>
     <v-data-table
       :headers="headers"
-      :items="services"
+      :items="questionCategories"
       :pagination.sync="pagination"
-      :hide-headers="!services || services.length === 0"
+      :hide-headers="!questionCategories || questionCategories.length === 0"
       hide-actions
       v-model="selected"
       select-all
-      :no-data-text="$t('service.noData')">
+      :no-data-text="$t('questionCategory.noData')">
       <tr slot="items" slot-scope="props">
         <td>
           <v-checkbox v-model="props.selected"></v-checkbox>
         </td>
         <td>{{ props.item.name }}</td>
-        <td class="text-xs-center">{{ props.item.cost }} €</td>
         <td class="text-xs-center">
           <v-icon v-show="props.item.active">check</v-icon>
         </td>
@@ -25,17 +24,17 @@
 
 <script>
   import * as EventTypes from '@/event-types';
-  import ServiceListActions from './ServiceListActions';
+  import QuestionCategoryListActions from './QuestionCategoryListActions';
 
   export default {
-    name: 'service-list-desktop',
+    name: 'question-category-list-desktop',
 
     components: {
-      ServiceListActions
+      QuestionCategoryListActions
     },
 
     props: {
-      services: {
+      questionCategories: {
         required: true,
         type: Array
       }
@@ -45,12 +44,11 @@
       return {
         selected: [],
         headers: [
-          {text: this.$t('label.name'), value: 'name', align: 'left', width: '60%'},
-          {text: this.$t('label.cost'), value: 'cost', align: 'center', width: '20%'},
+          {text: this.$t('label.name'), value: 'name', align: 'left', width: '80%'},
           {text: this.$t('label.active'), value: 'active', align: 'center', width: '20%'}
         ],
         pagination: {
-          sortBy: 'cost',
+          sortBy: 'order',
           descending: false,
           rowsPerPage: 1000000
         }

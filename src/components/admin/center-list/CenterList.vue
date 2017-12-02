@@ -1,16 +1,16 @@
 <template>
   <div>
-    <service-list-desktop
+    <center-list-desktop
       v-if="!isMobile"
-      :services="services"
+      :centers="centers"
       @onSelect="onSelect">
-    </service-list-desktop>
+    </center-list-desktop>
 
-    <service-list-mobile
+    <center-list-mobile
       v-if="isMobile"
-      :services="services"
+      :centers="centers"
       @onSelect="onSelect">
-    </service-list-mobile>
+    </center-list-mobile>
 
     <v-fab-transition>
       <v-btn
@@ -39,20 +39,20 @@
 
 <script>
   import * as EventTypes from '@/event-types';
-  import ServiceListDesktop from './ServiceListDesktop';
-  import ServiceListMobile from './ServiceListMobile';
+  import CenterListDesktop from './CenterListDesktop';
+  import CenterListMobile from './CenterListMobile';
 
   export default {
-    name: 'service-list',
+    name: 'center-list',
 
     components: {
-      ServiceListDesktop,
-      ServiceListMobile
+      CenterListDesktop,
+      CenterListMobile
     },
 
     data () {
       return {
-        services: [],
+        centers: [],
         selected: [],
         fabButton: null,
         fabTooltip: false
@@ -62,36 +62,36 @@
     mounted () {
       this.fabButton = this.$refs.fab ? this.$refs.fab.$el : null;
       this.$events.on(EventTypes.GO_BACK, this.clearSelection);
-      this.$events.on(EventTypes.SERVICE_LIST_ON_EDIT, this.edit);
-      this.$events.on(EventTypes.SERVICE_LIST_DELETE, this.remove);
-      this.$store.commit('title', this.$t('service.titleList'));
-      this.loadServices();
+      this.$events.on(EventTypes.CENTER_LIST_ON_EDIT, this.edit);
+      this.$events.on(EventTypes.CENTER_LIST_DELETE, this.remove);
+      this.$store.commit('title', this.$t('center.titleList'));
+      this.loadCenters();
     },
 
     beforeDestroy () {
       this.$events.off(EventTypes.GO_BACK, this.clearSelection);
-      this.$events.off(EventTypes.SERVICE_LIST_ON_EDIT, this.edit);
-      this.$events.off(EventTypes.SERVICE_LIST_DELETE, this.remove);
+      this.$events.off(EventTypes.CENTER_LIST_ON_EDIT, this.edit);
+      this.$events.off(EventTypes.CENTER_LIST_DELETE, this.remove);
     },
 
     methods: {
-      async loadServices () {
+      async loadCenters () {
         this.selected = [];
-        this.services = await this.$store.dispatch('services/getAll');
+        this.centers = await this.$store.dispatch('centers/getAll');
       },
 
       add () {
-        this.$router.push({name: 'ServiceItem', params: {id: 'new'}});
+        this.$router.push({name: 'CenterItem', params: {id: 'new'}});
       },
 
       edit () {
-        this.$router.push({name: 'ServiceItem', params: {id: this.selected[0].id}});
+        this.$router.push({name: 'CenterItem', params: {id: this.selected[0].id}});
       },
 
       async remove () {
-        await this.$store.dispatch('services/remove', this.selected);
-        this.$snackBar.success(this.$tc('service.deleteSuccess', this.selected.length));
-        this.loadServices();
+        await this.$store.dispatch('centers/remove', this.selected);
+        this.$snackBar.success(this.$tc('center.deleteSuccess', this.selected.length));
+        this.loadCenters();
       },
 
       onSelect (selected) {
@@ -105,7 +105,7 @@
       changeSelection (selected) {
         this.selected = selected;
         this.$store.commit('showBack', this.selected.length > 0);
-        this.$events.emit(EventTypes.SERVICE_LIST_SELECTION_CHANGED, this.selected);
+        this.$events.emit(EventTypes.CENTER_LIST_SELECTION_CHANGED, this.selected);
       }
     }
   };
