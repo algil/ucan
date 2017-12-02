@@ -23,8 +23,6 @@
       v-model="selected"
       select-all
       :no-data-text="$t('service.noData')">
-
-      <!-- TODO: Move to a new component ServiceListDesktopItem -->
       <tr slot="items" slot-scope="props">
         <td>
           <v-checkbox v-model="props.selected"></v-checkbox>
@@ -41,11 +39,15 @@
 
 <script>
   import ServiceListActions from './ServiceListActions';
+  import ServiceListDesktopItem from './ServiceListDesktopItem';
 
   export default {
     name: 'service-list-desktop',
 
-    components: {ServiceListActions},
+    components: {
+      ServiceListActions,
+      ServiceListDesktopItem
+    },
 
     props: {
       services: {
