@@ -3,10 +3,9 @@
     <template v-for="item in items">
       <v-list-group
         v-if="item.items"
-        key="menu-items"
         :group="item.group">
         <!-- Group header -->
-        <v-list-tile slot="item">
+        <v-list-tile slot="item" ripple>
           <v-list-tile-action>
             <v-icon>{{item.icon}}</v-icon>
           </v-list-tile-action>
