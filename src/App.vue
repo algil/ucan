@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" :dark="$store.state.dark">
     <router-view></router-view>
 
     <!--Dialog-->

@@ -3,7 +3,6 @@
     <!-- TODO: Move to a new component ServiceListDesktopToolbar -->
     <v-toolbar
       card
-      color="white"
       prominent>
       <v-toolbar-title class="body-2 grey--text">
         {{$store.state.title}}

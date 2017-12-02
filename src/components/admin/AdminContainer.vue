@@ -7,8 +7,9 @@
     name: 'admin-container',
 
     created () {
-      this.$vuetify.theme.primary = '#fea129';
-      this.$vuetify.theme.accent = '#ffd74f';
+      // this.$vuetify.theme.primary = '#fea129';
+      // this.$vuetify.theme.accent = '#ffd74f';
+      this.$store.commit('dark', true);
     }
   };
 </script>

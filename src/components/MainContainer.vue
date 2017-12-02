@@ -9,6 +9,7 @@
     created () {
       this.$vuetify.theme.primary = '#16bbd2';
       this.$vuetify.theme.accent = '#f3493f';
+      this.$store.commit('dark', false);
     }
   };
 </script>

@@ -1,4 +1,7 @@
 export default {
+  dark (state, payload) {
+    state.dark = payload;
+  },
   showBack (state, payload) {
     state.showBack = payload;
   },

@@ -3,18 +3,14 @@
     <template v-for="item in items">
       <v-list-group
         v-if="item.items"
-        :group="item.group">
+        :group="item.group"
+        :prepend-icon="item.icon"
+        no-action>
         <!-- Group header -->
         <v-list-tile slot="activator" ripple>
-          <v-list-tile-action>
-            <v-icon>{{item.icon}}</v-icon>
-          </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>{{item.title}}</v-list-tile-title>
+            <v-list-tile-title>{{ $t(item.title) }}</v-list-tile-title>
           </v-list-tile-content>
-          <v-list-tile-action>
-            <v-icon>keyboard_arrow_down</v-icon>
-          </v-list-tile-action>
         </v-list-tile>
 
         <!-- Sub items -->
@@ -22,11 +18,13 @@
           v-for="subItem in item.items"
           :key="subItem.title"
           :to="subItem.href"
-          ripple
           :disable="subItem.disable"
+          ripple
           exact>
           <v-list-tile-content>
-            <v-list-tile-title>{{subItem.title}}</v-list-tile-title>
+            <v-list-tile-title>
+              <span>{{ $t(subItem.title) }}</span>
+            </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list-group>
@@ -56,7 +54,7 @@
           <v-icon>{{item.icon}}</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title>{{item.title}}</v-list-tile-title>
+          <v-list-tile-title>{{ $t(item.title) }}</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
     </template>
@@ -64,29 +62,15 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
   export default {
     name: 'app-menu',
 
-    data () {
-      return {
-        items: [
-          {title: this.$t('menu.home'), icon: 'home', href: '/'},
-          {title: this.$t('menu.clientNew'), icon: 'person_add', href: '/client/new'},
-          {title: this.$t('menu.petNew'), icon: 'person_add', href: '/pet/new'},
-          {divider: true},
-          {
-            title: this.$t('menu.administration'),
-            icon: 'settings',
-            group: 'admin',
-            items: [
-              {title: this.$t('menu.centers'), href: {name: 'CenterList'}},
-              {title: this.$t('menu.services'), href: {name: 'ServiceList'}},
-              {title: this.$t('menu.questionCategories'), href: {name: 'QuestionCategoryList'}},
-              {title: this.$t('menu.questions'), href: {name: 'QuestionList'}}
-            ]
-          }
-        ]
-      };
+    computed: {
+      ...mapState({
+        items: state => state.appMenuItems
+      })
     }
   };
 </script>
