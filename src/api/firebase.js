@@ -12,4 +12,7 @@ const config = {
 
 firebase.initializeApp(config);
 
-export const db = firebase.firestore();
+export let db = firebase.firestore();
+firebase.firestore().enablePersistence().then(() => {
+  db = firebase.firestore();
+});
