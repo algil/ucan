@@ -5,7 +5,7 @@
         v-if="item.items"
         :group="item.group">
         <!-- Group header -->
-        <v-list-tile slot="item" ripple>
+        <v-list-tile slot="activator" ripple>
           <v-list-tile-action>
             <v-icon>{{item.icon}}</v-icon>
           </v-list-tile-action>

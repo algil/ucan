@@ -5,7 +5,7 @@ import MainContainer from '@/components/MainContainer';
 import BaseContainer from '@/components/BaseContainer';
 import HomeView from '@/components/HomeView';
 import AdminContainer from '@/components/admin/AdminContainer';
-import ServiceList from '@/components/admin/service/ServiceList';
+import ServiceList from '@/components/admin/service-list/ServiceList';
 import ServiceItem from '@/components/admin/service/ServiceItem';
 import CenterList from '@/components/admin/center/CenterList';
 import CenterItem from '@/components/admin/center/CenterItem';
