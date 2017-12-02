@@ -19,7 +19,7 @@
       <div v-show="!$store.state.loading">
         <v-container fluid v-if="!isMobile" key="main-desktop">
           <v-layout row>
-            <v-flex xs12 sm8 offset-sm2 md6 offset-md3>
+            <v-flex xs12 sm8 offset-sm2 xl6 offset-xl3>
               <router-view></router-view>
             </v-flex>
           </v-layout>

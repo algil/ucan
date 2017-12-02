@@ -39,14 +39,12 @@
 
 <script>
   import ServiceListActions from './ServiceListActions';
-  import ServiceListDesktopItem from './ServiceListDesktopItem';
 
   export default {
     name: 'service-list-desktop',
 
     components: {
-      ServiceListActions,
-      ServiceListDesktopItem
+      ServiceListActions
     },
 
     props: {
