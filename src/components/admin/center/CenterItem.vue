@@ -1,5 +1,5 @@
 <template>
-    <v-card >
+    <v-card :class="{'elevation-0 transparent': isMobile}">
       <form>
         <v-container>
           <v-layout column>

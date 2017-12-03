@@ -53,7 +53,7 @@
 
       clearSelection () {
         this.selected = [];
-        this.questions.map((question) => { question.selected = false });
+        this.questions.map((question) => { question.selected = false; });
         this.$emit('onSelect', this.selected);
       }
     }

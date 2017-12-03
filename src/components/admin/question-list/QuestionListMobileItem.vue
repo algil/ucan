@@ -3,13 +3,12 @@
     <v-list-tile-action>
       <v-checkbox
         v-model="question.selected"
-        @change="onSelect(question)">
+        @change="onSelect">
       </v-checkbox>
     </v-list-tile-action>
 
-    <v-list-tile-content>
+    <v-list-tile-content @click="edit">
       <v-list-tile-title>{{question.name}}</v-list-tile-title>
-      <v-list-tile-sub-title>{{question.cost}} €</v-list-tile-sub-title>
     </v-list-tile-content>
   </v-list-tile>
 </template>
@@ -26,8 +25,12 @@
     },
 
     methods: {
-      onSelect (question) {
+      onSelect () {
         this.$emit('onSelect', this.question);
+      },
+
+      edit () {
+        this.$router.push({name: 'QuestionItem', params: {id: this.question.id}});
       }
     }
   }
