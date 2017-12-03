@@ -75,6 +75,7 @@ export default {
     noData: 'No hay preguntas. Puedes anañir una nueva con el botón \'Nuevo\'',
     deleteSuccess: 'Pregunta eliminada | Preguntas eliminadas',
     saveSuccess: 'Pregunta guardada',
+    selectACategory: 'Selecciona una categoría',
     deleteDialog: {
       title: 'Eiiminar pregunta \'{value}\' | Eliminar {value} preguntas',
       message: '¿Estás seguro que quieres eliminar la pregunta seleccionada? Esta acción no puede deshacerse. | ¿Estás seguro que quieres eliminar las preguntas seleccionadas? Esta acción no puede deshacerse.'

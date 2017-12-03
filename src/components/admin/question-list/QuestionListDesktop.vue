@@ -14,6 +14,7 @@
           <v-checkbox v-model="props.selected"></v-checkbox>
         </td>
         <td>{{ props.item.name }}</td>
+        <td>{{ categoryName(props.item.categoryId) }}</td>
         <td class="text-xs-center">
           <v-icon v-show="props.item.active">check</v-icon>
         </td>
@@ -37,6 +38,10 @@
       questions: {
         required: true,
         type: Array
+      },
+      categories: {
+        required: true,
+        type: Array
       }
     },
 
@@ -44,11 +49,12 @@
       return {
         selected: [],
         headers: [
-          {text: this.$t('label.name'), value: 'name', align: 'left', width: '80%'},
+          {text: this.$t('label.name'), value: 'name', align: 'left', width: '40%'},
+          {text: this.$t('label.category'), value: 'categoryId', align: 'left', width: '40%'},
           {text: this.$t('label.active'), value: 'active', align: 'center', width: '20%'}
         ],
         pagination: {
-          sortBy: 'order',
+          sortBy: 'name',
           descending: false,
           rowsPerPage: 1000000
         }
@@ -66,6 +72,9 @@
     methods: {
       clearSelection () {
         this.selected = [];
+      },
+      categoryName (categoryId) {
+        return this.categories.find(category => category.id === categoryId).name;
       }
     },
 

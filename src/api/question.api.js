@@ -18,9 +18,9 @@ export async function getAll () {
 
 export async function save (question) {
   try {
-    let questionCategoryDoc = question.id ? questionsRef.doc(question.id) : questionsRef.doc();
-    question.id = questionCategoryDoc.id;
-    await questionCategoryDoc.set(question);
+    let questionDoc = question.id ? questionsRef.doc(question.id) : questionsRef.doc();
+    question.id = questionDoc.id;
+    await questionDoc.set(question);
   } catch (error) {
     console.error(error);
   }

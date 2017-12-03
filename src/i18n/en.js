@@ -75,6 +75,7 @@ export default {
     noData: 'There aren\'t questions. You can add a new one with the \'New\' button',
     deleteSuccess: 'Question deleted | Questions deleted',
     saveSuccess: 'Question saved',
+    selectACategory: 'Select a category',
     deleteDialog: {
       title: 'Delete question \'{value}\' | Delete {value} questions',
       message: 'Are you sure you want to delete the selected question? This action can not be undone. | Are you sure you want to delete the selected questions? This action can not be undone.'

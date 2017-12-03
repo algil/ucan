@@ -13,7 +13,7 @@
             ></v-text-field>
             <v-select
               :items="categories"
-              v-model="question.category"
+              v-model="question.categoryId"
               :label="$t('label.category')"
               item-text="name"
               item-value="id"

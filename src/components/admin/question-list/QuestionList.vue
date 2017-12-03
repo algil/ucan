@@ -1,14 +1,26 @@
 <template>
   <div>
+    <v-select
+      class="pl-2 pr-2"
+      :items="categories"
+      v-model="categoryId"
+      item-text="name"
+      item-value="id"
+      :placeholder="$t('question.selectACategory')"
+      single-line
+      clearable
+    ></v-select>
+
     <question-list-desktop
       v-if="!isMobile"
-      :questions="questions"
+      :questions="filteredQuestions"
+      :categories="categories"
       @onSelect="onSelect">
     </question-list-desktop>
 
     <question-list-mobile
       v-if="isMobile"
-      :questions="questions"
+      :questions="filteredQuestions"
       @onSelect="onSelect">
     </question-list-mobile>
 
@@ -52,11 +64,21 @@
 
     data () {
       return {
+        categories: [],
         questions: [],
         selected: [],
+        categoryId: null,
         fabButton: null,
         fabTooltip: false
       };
+    },
+
+    computed: {
+      filteredQuestions () {
+        return this.categoryId
+          ? this.questions.filter(question => question.categoryId === this.categoryId)
+          : this.questions;
+      }
     },
 
     mounted () {
@@ -65,6 +87,7 @@
       this.$events.on(EventTypes.QUESTION_LIST_ON_EDIT, this.edit);
       this.$events.on(EventTypes.QUESTION_LIST_DELETE, this.remove);
       this.$store.commit('title', this.$t('question.titleList'));
+      this.loadCategories();
       this.loadQuestions();
     },
 
@@ -75,6 +98,10 @@
     },
 
     methods: {
+      async loadCategories () {
+        this.categories = await this.$store.dispatch('questionCategories/getAll');
+      },
+
       async loadQuestions () {
         this.selected = [];
         this.questions = await this.$store.dispatch('questions/getAll');
