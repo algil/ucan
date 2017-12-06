@@ -2,12 +2,12 @@
   <v-container fluid grid-list-lg>
     <v-layout row wrap>
       <v-flex xs12>
-        <client-view-form :client="client"></client-view-form>
+        <client-view-form :client="client" @onSave="clientSaved"></client-view-form>
       </v-flex>
-      <v-flex xs12>
+      <v-flex xs12 v-if="isEditMode">
         <client-view-pets :pets="client.pets"></client-view-pets>
       </v-flex>
-      <v-flex xs12>
+      <v-flex xs12 v-if="isEditMode">
         <client-view-activity :pets="client.pets"></client-view-activity>
       </v-flex>
     </v-layout>
@@ -56,12 +56,19 @@
           this.loadClient();
         } else {
           this.$store.commit('title', this.$t('client.titleNew'));
+          this.client = {};
         }
       },
 
       async loadClient () {
         this.client = await this.$store.dispatch('clients/get', this.id);
         this.$store.commit('title', `'${this.client.name}'`);
+      },
+
+      clientSaved () {
+        if (!this.isEditMode) {
+          this.$router.push({path: `/client/${this.client.id}`});
+        }
       }
     }
   };

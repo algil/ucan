@@ -27,6 +27,7 @@ export default {
     back: 'Atrás',
     cancel: 'Cancelar',
     category: 'Cateogría',
+    city: 'Ciudad',
     close: 'Cerrar',
     cost: 'Precio',
     delete: 'Eliminar',
@@ -42,7 +43,8 @@ export default {
     phone2: 'Teléfono 2',
     postalCode: 'Código postal',
     save: 'Guardar',
-    surname: 'Apellidos'
+    surname: 'Apellidos',
+    town: 'Localidad'
   },
   service: {
     titleList: 'Servicios',

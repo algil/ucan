@@ -1,6 +1,6 @@
 <template>
   <v-app id="app" :dark="$store.state.dark">
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
 
     <!--Dialog-->
     <app-dialog></app-dialog>

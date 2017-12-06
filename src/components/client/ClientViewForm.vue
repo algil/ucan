@@ -14,7 +14,8 @@
             v-model="client.name"
             data-vv-name="name"
             :error-messages="errors.collect('name')"
-            v-validate="'required'"
+            v-validate="'required|max:100'"
+            required
           ></v-text-field>
         </v-flex>
         <v-flex xs12 sm6>
@@ -23,25 +24,48 @@
             v-model="client.surname"
             data-vv-name="surname"
             :error-messages="errors.collect('surname')"
-            v-validate="'required'"
+            v-validate="'required|max:100'"
+            required
           ></v-text-field>
         </v-flex>
-        <v-flex xs12 sm9>
+        <v-flex xs12>
           <v-text-field
             :label="$t('label.address')"
             v-model="client.address"
             data-vv-name="address"
             :error-messages="errors.collect('address')"
-            v-validate="'required'"
+            v-validate="'required|max:255'"
+            required
           ></v-text-field>
         </v-flex>
-        <v-flex xs12 sm3>
+        <v-flex xs4>
+          <v-text-field
+            :label="$t('label.town')"
+            v-model="client.town"
+            data-vv-name="town"
+            :error-messages="errors.collect('town')"
+            v-validate="'required|max:255'"
+            required
+          ></v-text-field>
+        </v-flex>
+        <v-flex xs4>
+          <v-text-field
+            :label="$t('label.city')"
+            v-model="client.city"
+            data-vv-name="city"
+            :error-messages="errors.collect('city')"
+            v-validate="'required|max:255'"
+            required
+          ></v-text-field>
+        </v-flex>
+        <v-flex xs12 sm4>
           <v-text-field
             :label="$t('label.postalCode')"
             v-model="client.postalCode"
             data-vv-name="postalCode"
             :error-messages="errors.collect('postalCode')"
-            v-validate="'required'"
+            v-validate="'required|digits:5'"
+            required
           ></v-text-field>
         </v-flex>
         <v-flex xs12 sm3>
@@ -50,7 +74,8 @@
             v-model="client.phone1"
             data-vv-name="phone1"
             :error-messages="errors.collect('phone1')"
-            v-validate="'required'"
+            v-validate="'required|digits:9'"
+            required
           ></v-text-field>
         </v-flex>
         <v-flex xs12 sm3>
@@ -59,7 +84,7 @@
             v-model="client.phone2"
             data-vv-name="phone2"
             :error-messages="errors.collect('phone2')"
-            v-validate="'required'"
+            v-validate="'digits:9'"
           ></v-text-field>
         </v-flex>
         <v-flex xs12 sm6>
@@ -68,7 +93,8 @@
             v-model="client.email"
             data-vv-name="email"
             :error-messages="errors.collect('email')"
-            v-validate="'required'"
+            v-validate="'required|email'"
+            required
           ></v-text-field>
         </v-flex>
         <v-flex xs12 sm6>
@@ -77,7 +103,7 @@
             v-model="client.occupation"
             data-vv-name="occupation"
             :error-messages="errors.collect('occupation')"
-            v-validate="'required'"
+            v-validate="'max:255'"
           ></v-text-field>
         </v-flex>
         <v-flex xs12 sm6>
@@ -86,7 +112,7 @@
             v-model="client.howFoundUs"
             data-vv-name="howFoundUs"
             :error-messages="errors.collect('howFoundUs')"
-            v-validate="'required'"
+            v-validate="'|max:255'"
           ></v-text-field>
         </v-flex>
       </v-layout>
@@ -121,9 +147,7 @@
         if (isValid) {
           await this.$store.dispatch('clients/save', this.client);
           this.$snackBar.success(this.$t('client.saveSuccess'));
-          if (!this.client.id) {
-            // TODO: If it's not edit mode, navigate to this view with id
-          }
+          this.$emit('onSave');
         }
       }
     }

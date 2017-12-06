@@ -29,7 +29,7 @@ export default new Router({
           component: MainContainer,
           children: [
             {path: '/', name: 'Home', component: HomeView},
-            {path: '/client/:id', name: 'Client', component: ClientView, props: true}
+            {path: '/client/:id', name: 'ClientView', component: ClientView, props: true}
           ]
         },
         {

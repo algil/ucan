@@ -1,5 +1,5 @@
 <template>
-  <client-actions v-if="isCurrentRoute('Client')"></client-actions>
+  <client-actions v-if="isCurrentRoute('ClientView')"></client-actions>
   <service-list-actions v-else-if="isCurrentRoute('ServiceList')"></service-list-actions>
   <service-item-actions v-else-if="isCurrentRoute('ServiceItem')"></service-item-actions>
   <center-list-actions v-else-if="isCurrentRoute('CenterList')"></center-list-actions>
