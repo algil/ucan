@@ -1,5 +1,6 @@
 <template>
-  <service-list-actions v-if="isCurrentRoute('ServiceList')"></service-list-actions>
+  <client-actions v-if="isCurrentRoute('Client')"></client-actions>
+  <service-list-actions v-else-if="isCurrentRoute('ServiceList')"></service-list-actions>
   <service-item-actions v-else-if="isCurrentRoute('ServiceItem')"></service-item-actions>
   <center-list-actions v-else-if="isCurrentRoute('CenterList')"></center-list-actions>
   <center-item-actions v-else-if="isCurrentRoute('CenterItem')"></center-item-actions>
@@ -10,6 +11,8 @@
 </template>
 
 <script>
+  import ClientActions from '@/components/client/ClientActions';
+
   import ServiceListActions from '@/components/admin/service-list/ServiceListActions';
   import ServiceItemActions from '@/components/admin/service/ServiceItemActions';
   import CenterListActions from '@/components/admin/center-list/CenterListActions';
@@ -23,6 +26,7 @@
     name: 'app-header-toolbars',
 
     components: {
+      ClientActions,
       ServiceListActions,
       ServiceItemActions,
       CenterListActions,

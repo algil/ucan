@@ -20,3 +20,5 @@ export const QUESTION_LIST_SELECTION_CHANGED = 'QuestionListSelectionChanged';
 export const QUESTION_LIST_ON_EDIT = 'QuestionListOnEdit';
 export const QUESTION_LIST_DELETE = 'QuestionListOnDelete';
 export const QUESTION_ON_SAVE = 'QuestionOnSave';
+
+export const CLIENT_ON_SAVE = 'ClientOnSave';

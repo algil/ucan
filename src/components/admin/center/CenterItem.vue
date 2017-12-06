@@ -1,25 +1,25 @@
 <template>
-    <v-card :class="{'elevation-0 transparent': isMobile}">
-      <form>
-        <v-container>
-          <v-layout column>
-            <v-flex xs12 md8 offset-md2>
-              <v-text-field
-                :label="$t('label.name')"
-                v-model="center.name"
-                data-vv-name="name"
-                :error-messages="errors.collect('name')"
-                v-validate="'required'"
-              ></v-text-field>
-              <v-checkbox
-                :label="$t('label.active')"
-                v-model="center.active">
-              </v-checkbox>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </form>
-    </v-card>
+  <v-card :class="{'elevation-0 transparent': isMobile}">
+    <form>
+      <v-container>
+        <v-layout column>
+          <v-flex xs12 md8 offset-md2>
+            <v-text-field
+              :label="$t('label.name')"
+              v-model="center.name"
+              data-vv-name="name"
+              :error-messages="errors.collect('name')"
+              v-validate="'required'"
+            ></v-text-field>
+            <v-checkbox
+              :label="$t('label.active')"
+              v-model="center.active">
+            </v-checkbox>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </form>
+  </v-card>
 </template>
 
 <script>

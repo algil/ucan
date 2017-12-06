@@ -23,6 +23,7 @@ export default {
   },
   label: {
     active: 'Active',
+    address: 'Address',
     back: 'Back',
     cancel: 'Cancel',
     category: 'Category',
@@ -30,11 +31,18 @@ export default {
     cost: 'Cost',
     delete: 'Delete',
     edit: 'Edit',
+    email: 'Email',
+    howFoundUs: 'How did you find us?',
     name: 'Name',
     new: 'New',
+    occupation: 'Occupation',
     ok: 'Ok',
     order: 'Order',
-    save: 'Save'
+    phone1: 'Phone 1',
+    phone2: 'Phone 2',
+    postalCode: 'Postal code',
+    save: 'Save',
+    surname: 'Surname'
   },
   service: {
     titleList: 'Services',
@@ -80,5 +88,12 @@ export default {
       title: 'Delete question \'{value}\' | Delete {value} questions',
       message: 'Are you sure you want to delete the selected question? This action can not be undone. | Are you sure you want to delete the selected questions? This action can not be undone.'
     }
+  },
+  client: {
+    titleNew: 'New Client',
+    titleGeneral: 'General information',
+    titlePets: 'Pets',
+    titleActivity: 'Activity',
+    saveSuccess: 'Client saved'
   }
 }

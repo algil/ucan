@@ -4,6 +4,8 @@ import NotFound from '@/components/pages/PageNotFound';
 import MainContainer from '@/components/MainContainer';
 import BaseContainer from '@/components/BaseContainer';
 import HomeView from '@/components/HomeView';
+import ClientView from '@/components/client/ClientView';
+
 import AdminContainer from '@/components/admin/AdminContainer';
 import ServiceList from '@/components/admin/service-list/ServiceList';
 import ServiceItem from '@/components/admin/service/ServiceItem';
@@ -26,7 +28,8 @@ export default new Router({
           path: '/',
           component: MainContainer,
           children: [
-            {path: '/', name: 'Home', component: HomeView}
+            {path: '/', name: 'Home', component: HomeView},
+            {path: '/client/:id', name: 'Client', component: ClientView, props: true}
           ]
         },
         {

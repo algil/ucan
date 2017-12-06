@@ -23,6 +23,7 @@ export default {
   },
   label: {
     active: 'Activo',
+    address: 'Dirección',
     back: 'Atrás',
     cancel: 'Cancelar',
     category: 'Cateogría',
@@ -30,11 +31,18 @@ export default {
     cost: 'Precio',
     delete: 'Eliminar',
     edit: 'Editar',
+    email: 'Email',
+    howFoundUs: '¿Cómo nos conoció?',
     name: 'Nombre',
     new: 'Nuevo',
+    occupation: 'Profesión',
     ok: 'Ok',
     order: 'Orden',
-    save: 'Guardar'
+    phone1: 'Teléfono 1',
+    phone2: 'Teléfono 2',
+    postalCode: 'Código postal',
+    save: 'Guardar',
+    surname: 'Apellidos'
   },
   service: {
     titleList: 'Servicios',
@@ -80,5 +88,12 @@ export default {
       title: 'Eiiminar pregunta \'{value}\' | Eliminar {value} preguntas',
       message: '¿Estás seguro que quieres eliminar la pregunta seleccionada? Esta acción no puede deshacerse. | ¿Estás seguro que quieres eliminar las preguntas seleccionadas? Esta acción no puede deshacerse.'
     }
+  },
+  client: {
+    titleNew: 'Nuevo Cliente',
+    titleGeneral: 'Información general',
+    titlePets: 'Mascotas',
+    titleActivity: 'Actividad',
+    saveSuccess: 'Cliente guardado'
   }
 }
