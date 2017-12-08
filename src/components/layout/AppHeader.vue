@@ -5,7 +5,6 @@
     clipped-left
     dark
     color="primary">
-
     <v-toolbar-side-icon
       v-if="!$store.state.showBack"
       @click.stop="toggleSidebar">

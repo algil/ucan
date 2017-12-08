@@ -36,6 +36,8 @@ export default {
     howFoundUs: 'How did you find us?',
     name: 'Name',
     new: 'New',
+    newActivity: 'New activity',
+    newPet: 'New pet',
     occupation: 'Occupation',
     ok: 'Ok',
     order: 'Order',
@@ -93,9 +95,17 @@ export default {
   },
   client: {
     titleNew: 'New Client',
-    titleGeneral: 'General information',
-    titlePets: 'Pets',
-    titleActivity: 'Activity',
-    saveSuccess: 'Client saved'
+    saveSuccess: 'Client saved',
+    general: {
+      title: 'General information'
+    },
+    pets: {
+      title: 'Pets',
+      noData: 'There aren\'t pets. You can add a new one with the \'New pet\' button'
+    },
+    activity: {
+      title: 'Activity',
+      noData: 'There isn\'t any activity. You can add a new one with the \'New activity\' button'
+    }
   }
 }

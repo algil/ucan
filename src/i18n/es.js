@@ -36,6 +36,8 @@ export default {
     howFoundUs: '¿Cómo nos conoció?',
     name: 'Nombre',
     new: 'Nuevo',
+    newActivity: 'Nueva actividad',
+    newPet: 'Nueva mascota',
     occupation: 'Profesión',
     ok: 'Ok',
     order: 'Orden',
@@ -93,9 +95,17 @@ export default {
   },
   client: {
     titleNew: 'Nuevo Cliente',
-    titleGeneral: 'Información general',
-    titlePets: 'Mascotas',
-    titleActivity: 'Actividad',
-    saveSuccess: 'Cliente guardado'
+    saveSuccess: 'Cliente guardado',
+    generalInformation: {
+      title: 'Información general'
+    },
+    pets: {
+      title: 'Mascotas',
+      noData: 'No hay mascotas. Puedes anañir una nueva con el botón \'Nuevo mascota\''
+    },
+    activity: {
+      title: 'Actividad',
+      noData: 'No hay ninguna actividad. Puedes anañir una nueva con el botón \'Nueva actividad\''
+    }
   }
 }
