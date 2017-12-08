@@ -69,7 +69,7 @@
         await this.$store.dispatch('clients/save', client);
         this.$snackBar.success(this.$t('client.saveSuccess'));
         if (!this.isEditMode) {
-          this.$router.push({path: `/client/${client.id}`});
+          this.$router.push({name: 'ClientView', params: {id: client.id}});
         }
       }
     }

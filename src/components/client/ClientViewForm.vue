@@ -40,7 +40,7 @@
               required
             ></v-text-field>
           </v-flex>
-          <v-flex xs4>
+          <v-flex xs12 sm4>
             <v-text-field
               :label="$t('label.town')"
               v-model="client.town"
@@ -50,7 +50,7 @@
               required
             ></v-text-field>
           </v-flex>
-          <v-flex xs4>
+          <v-flex xs12 sm4>
             <v-text-field
               :label="$t('label.city')"
               v-model="client.city"
