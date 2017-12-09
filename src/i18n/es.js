@@ -101,11 +101,11 @@ export default {
     },
     pets: {
       title: 'Mascotas',
-      noData: 'No hay mascotas. Puedes anañir una nueva con el botón \'Nuevo mascota\''
+      noData: 'No hay mascotas. Puedes anañir una nueva con el botón \'Nuevo mascota\'.'
     },
     activity: {
       title: 'Actividad',
-      noData: 'No hay ninguna actividad. Puedes anañir una nueva con el botón \'Nueva actividad\''
+      noData: 'No hay ninguna actividad.'
     }
   }
 }

@@ -7,8 +7,7 @@ export default {
   notification: null,
   appMenuItems: [
     {title: 'menu.home', icon: 'home', href: '/'},
-    {title: 'menu.clientNew', icon: 'person_add', href: {name: 'ClientView', params: {id: 'new'}}},
-    {title: 'menu.petNew', icon: 'pets', href: '/pet/new'},
+    {title: 'menu.clientNew', icon: 'person_add', href: {name: 'ClientView', params: {clientId: 'new'}}},
     {divider: true},
     {
       title: 'menu.administration',

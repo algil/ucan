@@ -101,11 +101,18 @@ export default {
     },
     pets: {
       title: 'Pets',
-      noData: 'There aren\'t pets. You can add a new one with the \'New pet\' button'
+      noData: 'There aren\'t pets. You can add a new one with the \'New pet\' button.'
     },
     activity: {
       title: 'Activity',
-      noData: 'There isn\'t any activity. You can add a new one with the \'New activity\' button'
+      noData: 'There isn\'t any activity.'
+    }
+  },
+  pet: {
+    titleNew: 'New Pet',
+    saveSuccess: 'Pet saved',
+    general: {
+      title: 'General information'
     }
   }
 }

@@ -137,11 +137,11 @@
     },
 
     mounted () {
-      this.$events.on(EventTypes.CLIENT_ON_SAVE, this.save);
+      this.$events.on(EventTypes.FORM_ON_SAVE, this.save);
     },
 
     beforeDestroy () {
-      this.$events.off(EventTypes.CLIENT_ON_SAVE, this.save);
+      this.$events.off(EventTypes.FORM_ON_SAVE, this.save);
     },
 
     methods: {

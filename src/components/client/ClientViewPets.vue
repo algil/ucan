@@ -7,7 +7,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-tooltip left>
-        <v-btn icon slot="activator">
+        <v-btn icon slot="activator" @click="viewPet()">
           <v-icon>add</v-icon>
         </v-btn>
         <span>{{ $t('label.newPet') }}</span>
@@ -52,7 +52,8 @@
 
     methods: {
       viewPet (pet) {
-        console.log('viewPet', pet);
+        let petId = pet ? pet.id : 'new';
+        this.$emit('viewPet', petId);
       }
     }
   };

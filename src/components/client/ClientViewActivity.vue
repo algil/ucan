@@ -6,12 +6,6 @@
         {{ $t('client.activity.title') }}
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-tooltip left>
-        <v-btn icon slot="activator">
-          <v-icon>add</v-icon>
-        </v-btn>
-        <span>{{ $t('label.newActivity') }}</span>
-      </v-tooltip>
     </v-toolbar>
     <v-divider></v-divider>
 

@@ -1,13 +1,13 @@
 <template>
   <v-container fluid grid-list-lg>
     <v-layout row wrap>
-      <v-flex xs12 v-if="true">
+      <v-flex xs12>
         <client-view-form :client="client" @save="save"></client-view-form>
       </v-flex>
-      <v-flex xs12 v-if="true">
-        <client-view-pets :pets="client.pets"></client-view-pets>
+      <v-flex xs12 v-if="isEditMode">
+        <client-view-pets :pets="client.pets" @viewPet="viewPet"></client-view-pets>
       </v-flex>
-      <v-flex xs12 v-if="true">
+      <v-flex xs12 v-if="isEditMode">
         <client-view-activity :pets="client.pets"></client-view-activity>
       </v-flex>
     </v-layout>
@@ -21,7 +21,7 @@
 
   export default {
     props: {
-      id: {
+      clientId: {
         required: true,
         type: String
       }
@@ -51,7 +51,7 @@
 
     methods: {
       init () {
-        this.isEditMode = this.id !== 'new';
+        this.isEditMode = this.clientId !== 'new';
         if (this.isEditMode) {
           this.loadClient();
         } else {
@@ -61,15 +61,24 @@
       },
 
       async loadClient () {
-        this.client = await this.$store.dispatch('clients/get', this.id);
+        this.client = await this.$store.dispatch('clients/get', this.clientId);
         this.$store.commit('title', `'${this.client.name}'`);
+        this.loadPets();
+      },
+
+      async loadPets () {
+        this.client.pets = await this.$store.dispatch('pets/getByClientId', this.clientId);
+      },
+
+      viewPet (petId) {
+        this.$router.push({name: 'PetView', params: {clientId: this.clientId, petId}});
       },
 
       async save (client) {
         await this.$store.dispatch('clients/save', client);
         this.$snackBar.success(this.$t('client.saveSuccess'));
         if (!this.isEditMode) {
-          this.$router.push({name: 'ClientView', params: {id: client.id}});
+          this.$router.push({name: 'ClientView', params: {clientId: client.id}});
         }
       }
     }

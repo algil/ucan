@@ -7,6 +7,7 @@ import getters from './getters';
 import actions from './actions';
 import mutations from './mutations';
 import clients from './modules/clients';
+import pets from './modules/pets';
 import services from './modules/services';
 import centers from './modules/centers';
 import questionCategories from './modules/question-categories';
@@ -27,6 +28,7 @@ export default new Vuex.Store({
   mutations,
   modules: {
     clients,
+    pets,
     services,
     centers,
     questionCategories,

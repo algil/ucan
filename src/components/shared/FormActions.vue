@@ -17,11 +17,11 @@
   import * as EventTypes from '@/event-types';
 
   export default {
-    name: 'client-actions',
+    name: 'form-actions',
 
     methods: {
       onSave () {
-        this.$events.emit(EventTypes.CLIENT_ON_SAVE);
+        this.$events.emit(EventTypes.FORM_ON_SAVE);
       }
     }
   };
