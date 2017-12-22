@@ -15,32 +15,31 @@
     </v-toolbar>
     <v-divider></v-divider>
 
-    <v-card-text v-show="!pets" class="text-xs-center grey--text text--darken-1">
+    <v-card-text v-show="!areTherePets" class="text-xs-center grey--text text--darken-1">
       <p>{{ $t('client.pets.noData') }}</p>
     </v-card-text>
-    <v-card-text v-show="pets">
-      <v-container class="pa-0">
-        <v-layout row wrap>
-          <client-view-pet-item
-            v-for="pet in pets"
-            :key="pet.id"
-            :pet="pet"
-            @click="viewPet(pet)"
-          ></client-view-pet-item>
-        </v-layout>
-      </v-container>
+    <v-card-text v-show="areTherePets">
+      <v-layout wrap text-xs-center>
+        <client-view-pets-item
+          v-for="pet in pets"
+          :key="pet.id"
+          :pet="pet"
+          @click="viewPet(pet.id)"
+          @delete="deletePet(pet.id)"
+        ></client-view-pets-item>
+      </v-layout>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-  import ClientViewPetItem from './ClientViewPetItem';
+  import ClientViewPetsItem from './ClientViewPetsItem';
 
   export default {
     name: 'client-view-pets',
 
     components: {
-      ClientViewPetItem
+      ClientViewPetsItem
     },
 
     props: {
@@ -50,10 +49,19 @@
       }
     },
 
+    computed: {
+      areTherePets () {
+        return this.pets && this.pets.length > 0;
+      }
+    },
+
     methods: {
-      viewPet (pet) {
-        let petId = pet ? pet.id : 'new';
-        this.$emit('viewPet', petId);
+      viewPet (petId) {
+        this.$emit('view', petId);
+      },
+
+      deletePet (petId) {
+        this.$emit('delete', petId);
       }
     }
   };

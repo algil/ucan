@@ -17,15 +17,15 @@
 
       <!-- MAIN VIEW -->
       <div v-show="!$store.state.loading">
-        <v-container fluid v-if="!isMobile" key="main-desktop">
-          <v-layout row>
-            <v-flex xs12 sm8 offset-sm2 xl6 offset-xl3>
+        <v-container layout fluid justify-center grid-list-lg v-if="!isMobile" key="main-desktop">
+          <v-layout wrap flex sm12 xl8>
+            <v-flex xs12>
               <router-view></router-view>
             </v-flex>
           </v-layout>
         </v-container>
 
-        <v-layout row v-else-if="isMobile" key="main-desktop">
+        <v-layout row v-else-if="isMobile" key="main-mobile">
           <v-flex xs12>
             <router-view></router-view>
           </v-flex>

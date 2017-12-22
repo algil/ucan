@@ -7,8 +7,8 @@
     name: 'main-container',
 
     created () {
-      this.$vuetify.theme.primary = '#16bbd2';
-      this.$vuetify.theme.accent = '#f3493f';
+      this.$vuetify.theme.primary = '#fd9727';
+      this.$vuetify.theme.accent = '#cddb49';
       this.$store.commit('dark', false);
     }
   };

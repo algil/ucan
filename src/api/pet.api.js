@@ -1,4 +1,5 @@
 import { db } from './firebase';
+import * as clientApi from './client.api';
 
 const petsRef = db.collection('pets');
 
@@ -19,7 +20,10 @@ export async function getByClientId (clientId) {
 export async function save (pet) {
   try {
     let petDoc = pet.id ? petsRef.doc(pet.id) : petsRef.doc();
-    pet.id = petDoc.id;
+    if (!pet.id) {
+      pet.id = petDoc.id;
+      clientApi.addPet(pet.id, pet.clientId);
+    }
     await petDoc.set(pet);
     return pet.id;
   } catch (error) {

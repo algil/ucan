@@ -25,15 +25,22 @@ export default {
     active: 'Active',
     address: 'Address',
     back: 'Back',
+    birthdate: 'Birthdate',
+    breed: 'Breed',
     cancel: 'Cancel',
     category: 'Category',
     city: 'City',
     close: 'Close',
     cost: 'Cost',
     delete: 'Delete',
+    descriptionDog: 'Describe your pet with 3 adjectives',
+    descriptionDogHint: 'For instance: Quiet, obedient, loving',
     edit: 'Edit',
     email: 'Email',
+    female: 'Female',
+    gender: 'Gender',
     howFoundUs: 'How did you find us?',
+    male: 'Male',
     name: 'Name',
     new: 'New',
     newActivity: 'New activity',
@@ -44,9 +51,24 @@ export default {
     phone1: 'Phone 1',
     phone2: 'Phone 2',
     postalCode: 'Postal code',
+    previousTraining: 'Previous training?',
+    receptionAge: 'Reception age',
+    receptionAgeHint: 'For instance: 3 months',
     save: 'Save',
+    sex: 'Sex',
+    size: 'Size',
+    sterilized: 'Sterilized',
     surname: 'Surname',
-    town: 'Town'
+    town: 'Town',
+    weight: 'Weight'
+  },
+  size: {
+    xSmall: 'Extra small',
+    small: 'Small',
+    medium: 'Medium',
+    large: 'Large',
+    xLarge: 'Extra large',
+    huge: 'Huge'
   },
   service: {
     titleList: 'Services',
@@ -111,6 +133,7 @@ export default {
   pet: {
     titleNew: 'New Pet',
     saveSuccess: 'Pet saved',
+    deleteSuccess: 'Pet deleted',
     general: {
       title: 'General information'
     }

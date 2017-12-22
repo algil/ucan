@@ -1,11 +1,9 @@
 <template>
-  <v-container fluid grid-list-lg>
-    <v-layout row wrap>
-      <v-flex xs12>
-        <pet-view-form :pet="pet" @save="save"></pet-view-form>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <v-layout row wrap>
+    <v-flex xs12>
+      <pet-view-form :pet="pet" @save="save"></pet-view-form>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -62,9 +60,13 @@
       },
 
       async save (pet) {
+        this.pet.clientId = this.clientId;
         await this.$store.dispatch('pets/save', pet);
         this.$snackBar.success(this.$t('pet.saveSuccess'));
         this.$router.push({name: 'ClientView', params: {clientId: this.clientId}});
+      },
+
+      viewClient () {
       }
     }
   };

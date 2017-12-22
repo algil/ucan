@@ -27,6 +27,34 @@ export async function save (client) {
   }
 }
 
+export async function addPet (petId, clientId) {
+  try {
+    const client = await get(clientId);
+    let pets = client.pets;
+    pets.push({
+      [petId]: petId
+    });
+    return update(clientId, {pets});
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function removePet (petId, clientId) {
+  try {
+    const client = await get(clientId);
+    let pets = client.pets;
+    delete pets[petId];
+    return update(clientId, {pets});
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function update (id, data) {
+  await clientsRef.doc(id).update(data);
+}
+
 export async function remove (id) {
   await clientsRef.doc(id).delete();
 }

@@ -1,17 +1,15 @@
 <template>
-  <v-container fluid grid-list-lg>
-    <v-layout row wrap>
-      <v-flex xs12>
-        <client-view-form :client="client" @save="save"></client-view-form>
-      </v-flex>
-      <v-flex xs12 v-if="isEditMode">
-        <client-view-pets :pets="client.pets" @viewPet="viewPet"></client-view-pets>
-      </v-flex>
-      <v-flex xs12 v-if="isEditMode">
-        <client-view-activity :pets="client.pets"></client-view-activity>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <v-layout row wrap>
+    <v-flex xs12>
+      <client-view-form :client="client" @save="save"></client-view-form>
+    </v-flex>
+    <v-flex xs12 v-if="isEditMode">
+      <client-view-pets :pets="pets" @view="viewPet" @delete="deletePet"></client-view-pets>
+    </v-flex>
+    <v-flex xs12 v-if="isEditMode">
+      <client-view-activity :pets="pets"></client-view-activity>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
@@ -36,6 +34,7 @@
     data () {
       return {
         client: {},
+        pets: [],
         isEditMode: false
       };
     },
@@ -67,11 +66,17 @@
       },
 
       async loadPets () {
-        this.client.pets = await this.$store.dispatch('pets/getByClientId', this.clientId);
+        this.pets = await this.$store.dispatch('pets/getByClientId', this.clientId);
       },
 
       viewPet (petId) {
         this.$router.push({name: 'PetView', params: {clientId: this.clientId, petId}});
+      },
+
+      async deletePet (petId) {
+        await this.$store.dispatch('pets/remove', petId);
+        this.$snackBar.success(this.$t('pet.deleteSuccess'));
+        this.loadPets();
       },
 
       async save (client) {
