@@ -1,19 +1,16 @@
 <template>
   <v-tabs v-model="activeTab" grow>
-    <v-tabs-bar>
-      <v-tabs-item
-        v-for="category in categoriesSorted"
-        :key="category.id"
-        :href="'#' + category.id"
-        ripple
-      >
-        {{category.name}}
-      </v-tabs-item>
-      <v-tabs-slider></v-tabs-slider>
-    </v-tabs-bar>
+    <v-tab
+      v-for="category in categoriesSorted"
+      :key="category.id"
+      :href="'#' + category.id"
+      ripple
+    >
+      {{category.name}}
+    </v-tab>
 
-    <v-tabs-items>
-      <v-tabs-content
+    <v-tabs-items v-model="activeTab">
+      <v-tab-item
         v-for="category in categoriesSorted"
         :key="category.id"
         :id="category.id"
@@ -35,7 +32,7 @@
             </v-layout>
           </v-card-text>
         </v-card>
-      </v-tabs-content>
+      </v-tab-item>
     </v-tabs-items>
   </v-tabs>
 </template>
