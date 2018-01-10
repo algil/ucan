@@ -3,17 +3,22 @@
     <v-flex xs12>
       <pet-view-form :pet="pet" @save="save"></pet-view-form>
     </v-flex>
+    <v-flex xs12>
+      <pet-view-questions :pet="pet"></pet-view-questions>
+    </v-flex>
   </v-layout>
 </template>
 
 <script>
   import PetViewForm from './PetViewForm';
+  import PetViewQuestions from './PetViewQuestions';
 
   export default {
     name: 'pet-view',
 
     components: {
-      PetViewForm
+      PetViewForm,
+      PetViewQuestions
     },
 
     props: {

@@ -15,6 +15,7 @@
         </td>
         <td>{{ props.item.name }}</td>
         <td>{{ categoryName(props.item.categoryId) }}</td>
+        <td class="text-xs-right">{{ props.item.order }}</td>
         <td class="text-xs-center">
           <v-icon v-show="props.item.active">check</v-icon>
         </td>
@@ -51,10 +52,11 @@
         headers: [
           {text: this.$t('label.name'), value: 'name', align: 'left', width: '40%'},
           {text: this.$t('label.category'), value: 'categoryId', align: 'left', width: '40%'},
-          {text: this.$t('label.active'), value: 'active', align: 'center', width: '20%'}
+          {text: this.$t('label.order'), value: 'order', align: 'right', width: '10%'},
+          {text: this.$t('label.active'), value: 'active', align: 'center', width: '10%'}
         ],
         pagination: {
-          sortBy: 'name',
+          sortBy: 'order',
           descending: false,
           rowsPerPage: 1000000
         }

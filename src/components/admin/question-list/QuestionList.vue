@@ -100,6 +100,8 @@
     methods: {
       async loadCategories () {
         this.categories = await this.$store.dispatch('questionCategories/getAll');
+        this.categories = this._.sortBy(this.categories, (category) => category.order);
+        this.categoryId = this.categories ? this.categories[3].id : null;
       },
 
       async loadQuestions () {
